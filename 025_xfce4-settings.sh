@@ -41,10 +41,9 @@ xfconf-query -c xfwm4 -p /general/workspace_count -n -s 8
 #set uk keyboard
 #sed -i 's,^\(layouts=\).*,\1'gb',' ~/.config/xfce4/panel/xkb-plugin-18.rc
 sudo apt-get -y  remove xfce4-xkb-plugin 
-sudo kill -HUP `ps aux | grep -v grep | grep xfce4-xkb-plugin | awk {'print $2'}`
+sudo killall -HUP $(ps aux | grep -v grep | grep xfce4-xkb-plugin | awk {'print $2'})
 xfconf-query -c keyboard-layout -p /Default/XkbLayout -n -t string -s gb
 xfconf-query -c keyboard-layout -p /Default/XkbDisable -n -t bool -s false
 
-
-
-
+# xfce4 terminal scrollback, because configuring everything one way would be too easy.	
+sed -i "s,^\(ScollingLines=\).*,\1'100000'," ~/.config/xfce4/terminal/terminalrc

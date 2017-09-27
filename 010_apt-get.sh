@@ -1,6 +1,9 @@
 sudo apt-get -y install curl apt-file
+sudo apt-get -y install xclip
 sudo apt-get -y install sshpass
 sudo apt-get -y install git
+sudo apt-get -y install meld
+sudo apt-get -y install gitk
 sudo apt-get -y install zsync
 sudo apt-get -y install jq
 sudo apt-get -y install pv

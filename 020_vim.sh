@@ -120,7 +120,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'wincent/command-t'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-#Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
@@ -137,7 +137,10 @@ Plugin 'mhinz/vim-startify'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'terryma/vim-multiple-cursors'
-
+Plugin 'sudar/vim-arduino-syntax'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
 
 " toggleable panels
 Plugin 'tpope/vim-vinegar'
@@ -160,6 +163,9 @@ Plugin 'klen/python-mode'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 
+" FZF 
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -234,7 +240,7 @@ cat ~/.vimrc
 #vim +PluginInstall +qall
 
 # Install YouCompleteMe support
-apt-get install build-essential cmake
+apt-get install build-essential cmake exuberant-ctags
 apt-get install python-dev python3-dev
 
 # semantic support for C-family
@@ -251,6 +257,6 @@ apt-get install python-dev python3-dev
 #./build.py --all
 
 # jedi-vim (since youcompleteme seems to just crash)
-apt-get install pip3 
+apt-get install python-pip 
 pip install jedi
 

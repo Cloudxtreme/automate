@@ -6,7 +6,7 @@ sudo apt-get -y remove --purge libnm-gtk
 sudo rm /home/user/.config/autostart/nm-applet.destop
 
 
-sudo apt-get -y install wicd wicd-gtk wicd-curses
+sudo apt-get -y --force=yes install wicd wicd-gtk wicd-curses
 
 # Stop the gtk wicd client, it doesn't like files being changes under it. Even if you delette the file, when it exits it writes out its settings.
 PID=`ps aux | grep python | grep wicd-client| awk {'print $2'}`

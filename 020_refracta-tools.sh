@@ -1,6 +1,6 @@
 # get and install refracta stuff
 # For jessie yad needs to be built from testing/ascii (and gtk3 dep changed in control)
-apt-get install autotools-dev libgtk2.0-dev pkg-config intltool
+apt-get -y install autotools-dev libgtk2.0-dev pkg-config intltool
 
 cd /usr/src
 apt-get source yad
@@ -39,4 +39,4 @@ do
     rm ${FILE}
 done
 
-sudo apt-get -f install
+sudo apt-get -y -f install

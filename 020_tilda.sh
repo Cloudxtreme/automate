@@ -28,7 +28,7 @@ cat <<'EOF' >> ~/.config/tilda/config_0
 tilda_config_version = "1.1.11"
 # image = ""
 # command = ""
-font = "DejaVu"
+font = "DejaVu Sans Mono 9"
 key = "<Super>F1"
 addtab_key = "<Shift><Control>t"
 fullscreen_key = "F11"

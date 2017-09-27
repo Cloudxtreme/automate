@@ -158,6 +158,41 @@ EOF
 #    fi
 #done
 
+#PROFILE_NAME="23k5nqzr.default-1404250880109"
+#
+#PROFILE_DIR="~/.mozilla/firefox/${PROFILE_NAME}"
+# 
+#sudo for i in "browser.pocket.enabled"
+#do
+#    print $1
+#    if grep $i ${PROFILE_DIR}/prefs.js
+#    then
+#        sed -i -e 's/^user_pref($i, \(true\|false\));$/user_pref($i, false);/' ${PROFILE_DIR}/prefs.js
+#    else
+#        echo "user_pref($i, true);" >> ${PROFILE_DIR}/prefs.js
+#    fi
+#done
+#
+#network.http.speculative-parallel-limit to 0
+#
+#PROFILE_NAME="23k5nqzr.default-1404250880109"
+#
+#PROFILE_DIR="~/.mozilla/firefox/${PROFILE_NAME}"
+# 
+#sudo for i in "network.http.speculative-parallel-limit"
+#do
+#    print $1
+#    if grep $i ${PROFILE_DIR}/prefs.js
+#    then
+#        sed -i -e 's/^user_pref($i, \(0\|1\));$/user_pref($i, 0);/' ${PROFILE_DIR}/prefs.js
+#    else
+#        echo "user_pref($i, true);" >> ${PROFILE_DIR}/prefs.js
+#    fi
+#done
+
+
+
+
 # FIXME try firefox -install-global-extension ${YOUR_XPI_FILE] in a loop
 #ublock-origin                                  https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi
 #unplug                                         https://addons.mozilla.org/firefox/downloads/latest/2254/addon-2254-latest.xpi
@@ -191,7 +226,7 @@ https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.x
 "
 
 pwd
-EXTENSIONS_HOME="/home/user"
+EXTENSIONS_HOME="~/.mozilla"
 EXTENSIONS_DIR="${EXTENSIONS_HOME}/extensions"
 mkdir -p ${EXTENSIONS_DIR} && ls ${EXTENSIONS_DIR}
 pwd

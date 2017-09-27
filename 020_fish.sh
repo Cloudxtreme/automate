@@ -65,4 +65,10 @@ end
 
 alias subl "subl3"
 alias vim "nvim"
+
+set fish_function_path $fish_function_path "/usr/share/powerline/bindings/fish"
+powerline-setup.fish
 EOF
+
+echo 'set fish_function_path $fish_function_path "/usr/share/powerline/bindings/fish"' >> ~/.config/fish/config.fish 
+echo 'powerline-setup.fish' >> ~/.config/fish/config.fish

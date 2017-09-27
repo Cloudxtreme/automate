@@ -1,4 +1,4 @@
-sudo apt-get -y install zsh
+sudo apt-get -y install zsh nodejs-legacy
 
 # compaudit
 # There are insecure directories: /usr/local/share/zsh/site-functions
@@ -15,12 +15,17 @@ sudo apt-get install -y git
 # Install zgen plugin manager and zsh quicktart to get a default setup for zsh
 git clone http://github.com/tarjoilija/zgen # available with apt-get install zgen which installs to /usr/share/zgen
 git clone http://github.com/unixorn/zsh-quickstart-kit # FIXME: needs to be packaged
+mkdir -p ~/.zgen/robbyrussell/oh-my-zsh-master/
+git clone http://github.com/robbyrussell/oh-my-zsh ~/.zgen/robbyrussell/oh-my-zsh-master/
+
 ln -sf ~/zsh-quickstart-kit/zsh/.zshrc ~/.zshrc
 ln -sf ~/zsh-quickstart-kit/zsh/.zsh_functions ~/.zsh_functions
 ln -sf ~/zsh-quickstart-kit/zsh/.zsh_aliases ~/.zsh_aliases
 ln -sf ~/zsh-quickstart-kit/zsh/.zgen-setup ~/.zgen-setup
 #ln -sf ~/zsh-quickstart-kit/zsh/.zsh_completions ~/.zsh-completions
 mkdir -p ~/.zshrc.d
+echo "setopt PROMPT_SUBST" >> ~/.zshrc
+
 
 echo "NVIM_PYTHON_LOG_FILE=/var/tmp/nvim_python.log" >> ~/.zshrc.d/008_nvim.zsh
 echo "NVIM_PYTHON_LOG_LEVEL=DEBUG" >> ~/.zshrc.d/008_nvim.zsh
@@ -63,7 +68,7 @@ cat > ~/.zgen-local-plugins << 'EOF'
   bindkey "$terminfo[kcud1]" history-substring-search-down
 
   # Tab complete rakefile targets
-  zgen load unixorn/rake-completion.zshplugin
+  #zgen load unixorn/rake-completion.zshplugin
 
   # Automatically run zgen update and zgen selfupdate every 7 days
   zgen load unixorn/autoupdate-zgen
@@ -100,12 +105,13 @@ cat > ~/.zgen-local-plugins << 'EOF'
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/sudo
   zgen oh-my-zsh plugins/aws
-  zgen oh-my-zsh plugins/chruby
+  #zgen oh-my-zsh plugins/chruby
   zgen oh-my-zsh plugins/colored-man-pages
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/github
   zgen oh-my-zsh plugins/python
   zgen oh-my-zsh plugins/rsync
+  zgen oh-my-zsh plugins/tmux
   zgen oh-my-zsh plugins/screen
   zgen oh-my-zsh plugins/vagrant
 
@@ -126,8 +132,8 @@ cat > ~/.zgen-local-plugins << 'EOF'
 
   # Docker completion
   # zgen load srijanshetty/docker-zsh
-  zgen load oh-my-zsh plugins/docker
-  zgen load oh-my-zsh plugins/docker-compose
+  zgen load robbyrussell/oh-my-zsh plugins/docker
+  zgen load robbyrussell/oh-my-zsh plugins/docker-compose
 
   # Load me last
   GENCOMPL_FPATH=$HOME/.zsh/complete
@@ -145,7 +151,8 @@ cat > ~/.zgen-local-plugins << 'EOF'
   zgen load rimraf/k
 
   # Bullet train prompt setup
-  zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+  #zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+  zgen load robbyrussell/oh-my-zsh themes/agnoster
 
   ## Load Prezto
   # zgen prezto
@@ -174,7 +181,14 @@ EOF
 # example .d file use unset to prevent update
 echo 'QUICKSTART_KIT_REFRESH_IN_DAYS=7' > ~/.zshrc.d/001-qs_refresh.zsh
 
-sudo apt-get install fonts-powerline
+sudo apt-get install -y fonts-powerline powerline
+# sed -i 's,^\(export LOCATE_PATH=\).*,\1'/var/lib/mlocate/mlocate.db',' ~/.zshrc
+
+# Use powerline-daemon to speedup the prompt.
+echo 'powerline-daemon -q' > ~/.zshrc.d/006-powerline-daemon.zsh
+
+
+sed -i 's,^\(CHARMAP=\).*,\1'\"UTF-8\"',' /etc/default/console-setup
 
 # set theme for zsh
 cat > ~/.zshrc.d/002-theme.zsh << 'EOF'
@@ -184,7 +198,7 @@ ZSH_THEME="agnoster" # powerline based theme
 #ZSH_THEME="Pure"
 EOF
 
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.zgen/robbyrussell/oh-my-zsh-master/themes/powerlevel9k
+#git clone https://github.com/bhilburn/powerlevel9k.git ~/.zgen/robbyrussell/oh-my-zsh-master/themes/powerlevel9k
 
 ## add a separate zsh aliases directory
 #echo > ~/.zshrc << 'EOF'

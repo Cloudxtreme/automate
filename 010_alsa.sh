@@ -9,6 +9,7 @@ rm -r ~/.config/pulse
 sudo rm -rf /tmp/pulse*
 
 sudo apt-get -y install alsa-base alsa-tools alsa-tools-gui alsa-utils alsa-oss alsamixergui libalsaplayer0
+sudo apt-get -y install pnmixer
 
 sudo /etc/init.d/alsa-utils restart
 

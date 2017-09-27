@@ -1,10 +1,12 @@
 # http://www.zshwiki.org/home/zle/vi-mode
 # 
+echo "This script is very broken, and squashes .vimrc EXITING - FIXME"
+exit
 cat > ~/.vimrc <<'EOF'
-# Set vi command-line mode
+" Set vi command-line mode
 bindkey -v
 
-# Use right prompt to display vi mode.
+" Use right prompt to display vi mode.
 precmd() {
   RPROMPT=""
 }
@@ -20,22 +22,22 @@ zle-line-init() {
 zle -N zle-keymap-select
 zle -N zle-line-init
 
-# Vim bindings.
+" Vim bindings.
 bindkey -a 'gg' beginning-of-buffer-or-history
 bindkey -a 'g~' vi-oper-swap-case
 bindkey -a G end-of-buffer-or-history
 
-# In Vim backspace doesn't stop at the point where you started insert mode: 
+" In Vim backspace doesn't stop at the point where you started insert mode: 
 bindkey '^?' backward-delete-char
 bindkey '^H' backward-delete-char
 
-# 
+"
 bindkey '^G' what-cursor-position
 
-# Text Objects
-# Some are provided as shell functions so need to be manually enabled. select-bracketed which selects 
-# text delimited by brackets and select-quoted which selects text delimited by quote characters. 
-# The following binds them to key combinations such as i" a( in both the visual and viopp keymaps. 
+" Text Objects
+" Some are provided as shell functions so need to be manually enabled. select-bracketed which selects 
+" text delimited by brackets and select-quoted which selects text delimited by quote characters. 
+" The following binds them to key combinations such as i" a( in both the visual and viopp keymaps. 
 autoload -U select-bracketed select-quoted
 zle -N select-bracketed
 zle -N select-quoted
@@ -49,7 +51,7 @@ zle -N select-quoted
   done
 done
 
-# Clipboard integration using xclip
+" Clipboard integration using xclip
 [[ -n $DISPLAY ]] && (( $+commands[xclip] )) && {
 
   function cutbuffer() {

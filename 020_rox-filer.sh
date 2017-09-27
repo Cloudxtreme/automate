@@ -1,5 +1,6 @@
 # ROX-Filer settings
-sudo apt-get intall rox-filer
+sudo apt-get -y install rox-filer
+sudo apt-get -y install xmlstarlet
 
 # Options
 # The Options and menus2 file are not created until first run

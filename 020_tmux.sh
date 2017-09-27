@@ -1,3 +1,7 @@
+apt-get install tmux
+apt-get install tmux-plugin-manager
+apt-get install tmuxinator
+
 # https://github.com/Netherdrake/Dotfiles/tree/master/config/tmux
 # wget -c --directory-prefix ~/.config/tmux/ https://raw.githubusercontent.com/Netherdrake/Dotfiles/master/config/tmux/default.sh
 mkdir -p ~/.config/tmux

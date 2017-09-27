@@ -1,4 +1,4 @@
-sudo apt-get install redshift
+sudo apt-get -y install redshift
 
 /usr/bin/xfconf-query -c xfce4-session -p /startup/redshift/enabled -n -t bool -s true
 
