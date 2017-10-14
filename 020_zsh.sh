@@ -9,7 +9,7 @@ sudo mkdir -p /usr/local/share/zsh/site-functions
 sudo chmod g-w /usr/local/share/zsh/site-functions
 
 cd ~
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh) ${USER}
 
 sudo apt-get install -y git
 # Install zgen plugin manager and zsh quicktart to get a default setup for zsh
@@ -132,8 +132,9 @@ cat > ~/.zgen-local-plugins << 'EOF'
 
   # Docker completion
   # zgen load srijanshetty/docker-zsh
-  zgen load robbyrussell/oh-my-zsh plugins/docker
-  zgen load robbyrussell/oh-my-zsh plugins/docker-compose
+  zgen load akarzim/zsh-docker-aliases
+  #zgen load robbyrussell/oh-my-zsh plugins/docker
+  #zgen load robbyrussell/oh-my-zsh plugins/docker-compose
 
   # Load me last
   GENCOMPL_FPATH=$HOME/.zsh/complete
@@ -179,7 +180,9 @@ cat > ~/.zgen-local-plugins << 'EOF'
 EOF
 
 # example .d file use unset to prevent update
-echo 'QUICKSTART_KIT_REFRESH_IN_DAYS=7' > ~/.zshrc.d/001-qs_refresh.zsh
+echo '# Use unset 'QUICKSTART_KIT_REFRESH_IN_DAYS' to disable.' > ~/.zshrc.d/001-quickstart_refresh.zsh
+echo 'QUICKSTART_KIT_REFRESH_IN_DAYS=30' >> ~/.zshrc.d/001-quickstart_refresh.zsh
+echo 'ZGEN_PLUGIN_UPDATE_DAYS=30' > ~/.zshrc.d/001-zgen_refresh.zsh
 
 sudo apt-get install -y fonts-powerline powerline
 # sed -i 's,^\(export LOCATE_PATH=\).*,\1'/var/lib/mlocate/mlocate.db',' ~/.zshrc
@@ -217,6 +220,11 @@ EOF
 
 # alias python version
 mkdir -p ~/.zsh_aliases.d
+
+# tell bash to check the next word after the alias (i.e sudo) by adding a space to the end of the alias value.
+echo "# tell bash to check the next word after the alias (i.e sudo) by adding a space to the end of the alias value." > ~/.zsh_aliases.d/002_sudo.zsh
+echo 'alias sudo="sudo "' >>  ~/.zsh_aliases.d/002_sudo.zsh
+
 cat > ~/.zsh_aliases.d/003-py_aliases.zsh << 'EOF'
 _py_version() {
   PY_VERSIONS=(2 3)

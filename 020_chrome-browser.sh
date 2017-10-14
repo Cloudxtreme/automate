@@ -53,12 +53,13 @@ update-alternatives --install /usr/bin/google-chrome google-chrome \
 # user disabled it.
 rm -rf /etc/apt/sources.list.d/google-chrome.list
 
-cat > /etc/apt/sources.list.d-available/google-chrome-stable.list << EOF 
+mkdir -p /etc/apt/sources.list-available
+cat > /etc/apt/sources.list-available/google-chrome-stable.list << EOF 
 # wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 EOF
 
-ln -sf /etc/apt/sources.list.d-available/google-chrome-stable.list /etc/apt/sources.list.d/google-chrome-stable.list
+ln -sf /etc/apt/sources.list-available/google-chrome-stable.list /etc/apt/sources.list.d/google-chrome-stable.list
 
 
 #----

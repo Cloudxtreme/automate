@@ -6,7 +6,7 @@
 #
 # Tne aufoFill highlights its conpletions and so overwrites the primary buffer, I wish windows like behavior used only the buffer usedforctrl x ctrl v 
 
-PALEMOON_VERSION=27.1.1
+PALEMOON_VERSION=27.5.0
 PALEMOON_HOME=/opt
 wget -c --directory-prefix /var/tmp http://linux.palemoon.org/files/${PALEMOON_VERSION}/palemoon-${PALEMOON_VERSION}.en-US.linux-x86_64.tar.bz2
 sudo tar -xjvf /var/tmp/palemoon-${PALEMOON_VERSION}.en-US.linux-x86_64.tar.bz2 -C ${PALEMOON_HOME}

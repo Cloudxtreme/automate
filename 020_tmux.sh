@@ -168,3 +168,23 @@ set -g pane-active-border-fg colour069 # 24 blue
 # set -g pane-border-bg black
 # set -g pane-active-border-bg black
 EOF
+
+echo "source /usr/share/zsh/vendor_completions/_tmuxinator" > ~/.zshrc.d/006_tmuxinator.zsh
+
+
+
+cat > ~/.config/tmux/tmux.conf << 'EOF'
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '/usr/share/tmux-plugin-manager/tpm'
+EOF

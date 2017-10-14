@@ -1,23 +1,26 @@
 #!/bin/bash
+set +x
+
 apt-get install -y smartmontools gsmartcontrol
 
-sed -i '/^#start_smartd=.*/ s/.*/&\nstart_smartd=yes/' ./smartmontools
+sed -i '/^#enable_smart=.*/ s/.*/&\nenable_smart=\"\"/' /etc/default/smartmontools
 
-sed -i '/^#enable_smart=.*/ s/.*/&\nenable_smart=\"\"/' ./smartmontools
+sed -i '/^#start_smartd=.*/ s/.*/&\nstart_smartd=yes/' /etc/default/smartmontools
 
-sed -i '/^#smartd_opts=.*/ s/.*/&\nsmartd_opts=\"\"/' ./smartmontools
+sed -i '/^#smartd_opts=.*/ s/.*/&\nsmartd_opts=\"\"/' /etc/default/smartmontools
 
 # smartd must run with the --savestates option as the disks themselves usually do not keep track of the last region tested.
 for i in "--interval=1800" "--savestates=/var/lib/smartd/"; 
 do 
 	echo ${i};
-	sed -i "s|^smartd_opts=\"[ ]*\(.*\)\"|smartd_opts=\"\1 ${i}\"|" ./smartmontools
+	sed -i "s|^smartd_opts=\"[ ]*\(.*\)\"|smartd_opts=\"\1 ${i}\"|" /etc/default/smartmontools
 done
 
-for i in $(smartctl --scan-open | awk {'print $2'}); 
+for i in $(smartctl --scan-open | awk {'print $1'})
+
 do 
 	echo ${i};
-	sed -i "s|^enable_smart=\"[ ]*\(.*\)\"|enable_smart=\"\1 ${i}\"|" ./smartmontools
+	sed -i "s|^enable_smart=\"[ ]*\(.*\)\"|enable_smart=\"\1 ${i}\"|" /etc/default/smartmontools
 done
 
 EMAIL=root
@@ -35,4 +38,4 @@ done
 
 # To run the next test spans on Monday-Friday between 12-13am, run smartd with this directive: 
 RUNNER_OPT="n/../../[1-5]/12"
-sed -i "s|^DEVICESCAN[ ]*\(.*\)|DEVICESCAN -d removable -n standby -m ${EMAIL} -M exec /usr/share/smartmontools/smartd-runner -s ${RUNNER_OPT}|" ./smartd.conf
+sed -i "s|^DEVICESCAN[ ]*\(.*\)|DEVICESCAN -d removable -n standby -m ${EMAIL} -M exec /usr/share/smartmontools/smartd-runner -s ${RUNNER_OPT}|" /etc/smartd.conf

@@ -1,8 +1,16 @@
-set -x
+set +x
 #sudo apt-get install vim-gtk
 
 sudo sed -i -e 's/"syntax on/syntax on/' /etc/vim/vimrc
 sudo sed -i -e 's/"set background=dark/set background=dark/' /etc/vim/vimrc
+
+# Macros
+# Format json
+cat > ~/.vimrc << 'EOF'
+
+" Format json
+nmap =j  :%!python -m json.tool<CR>
+EOF
 
 # vimrc additions
 cat > ~/.vimrc << 'EOF'
@@ -91,6 +99,7 @@ cat > ~/.Xresources << 'EOF'
 EOF
 
 cd ~
+apt-get install  -y git
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Prepend to the .vimrc
@@ -218,8 +227,8 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " YouCompleteMe customizations
 " close autocomplete window
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"let g:ycm_autoclose_preview_window_after_completion=1
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 " Python docstrings for folded code.
@@ -232,16 +241,19 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/lib
 EOF
 cat ~/.vimrc_pending
 
+# append the existing vimrc to the plugin additions
 cat ~/.vimrc >> ~/.vimrc_pending
+
+# copy it back to the vimrc
 cp ~/.vimrc_pending ~/.vimrc	
 #mv ~/.vimrc_pending ~/.vimrc	
 
 cat ~/.vimrc
-#vim +PluginInstall +qall
+vim +PluginInstall +qall
 
 # Install YouCompleteMe support
-apt-get install build-essential cmake exuberant-ctags
-apt-get install python-dev python3-dev
+apt-get install -y build-essential cmake exuberant-ctags
+apt-get install -y python-dev python3-dev
 
 # semantic support for C-family
 #cd ~/.vim/bundle/YouCompleteMe/ && ./install.py --clang-completer
@@ -257,6 +269,6 @@ apt-get install python-dev python3-dev
 #./build.py --all
 
 # jedi-vim (since youcompleteme seems to just crash)
-apt-get install python-pip 
-pip install jedi
-
+#apt-get install -y python-pip 
+#pip install jedi
+apt-get install -y vim-python-jedi

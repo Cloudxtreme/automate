@@ -276,6 +276,7 @@ S=chat.freenode.net/+6697
 S=chat.freenode.net
 S=irc.freenode.net
 J=#devuan
+J=#devuan-dev
 J=#debianfork
 
 N=Furnet

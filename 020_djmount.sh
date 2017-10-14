@@ -3,6 +3,7 @@ apt-get install djmount
 DJMOUNT_DIR=~/dlna
 mkdir -p ${DJMOUNT_DIR}
 
+mkdir -p ~/.config/autostart
 bash -c "cat > ~/.config/autostart/djmount.desktop" <<EOF
 [Desktop Entry]
 Encoding=UTF-8

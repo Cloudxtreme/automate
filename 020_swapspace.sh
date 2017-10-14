@@ -14,8 +14,6 @@ cooldown=600
 sed -i "s#^user_pref(\"$i\",.*);#user_pref(\"browser.startup.page\", $value);#"  /etc/swapspace.conf
 sed -i "s|^#swappath=(\"$i\",.*);|user_pref(\"browser.startup.page\", $value);|"  /etc/swapspace.conf
 
-sed -i 's,^\(lat=\).*,\1'52.258744',' ~/.config/redshift.conf
-sed -i 's,^\(lat=\).*,\1'52.258744',' ~/.config/redshift.conf
 
 
 sed -i '/^#swappath=.*/ s/.*/&\nswappath=\"$swappath\"/' /etc/swapspace.conf
