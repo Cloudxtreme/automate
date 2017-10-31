@@ -1,4 +1,4 @@
-sudo apt-get -y install hexchat
+apt-get -y install hexchat
 mkdir -p ~/.config/hexchat
 cat > ~/.config/hexchat/chanopt.conf <<'EOF'
 network = freenode

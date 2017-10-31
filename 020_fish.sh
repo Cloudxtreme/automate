@@ -1,5 +1,5 @@
 # Install fish
-sudo apt-get install -y fish 
+apt-get install -y fish 
 mkdir -p ~/.config/fish
 # wget -c --directory-prefix ~/.config/fish https://raw.githubusercontent.com/Netherdrake/Dotfiles/master/config/fish/config.fish 
 

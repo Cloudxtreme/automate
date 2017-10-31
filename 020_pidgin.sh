@@ -1,1 +1,1 @@
-sudo apt-get install -y pidgin pidgin-otr pidgin-libnotify
+apt-get install -y pidgin pidgin-otr pidgin-libnotify

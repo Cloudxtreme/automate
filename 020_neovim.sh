@@ -1,7 +1,10 @@
 # Install Neovim
-sudo apt-get install software-properties-common -y
-sudo apt-get install python-software-properties -y
-sudo apt-get install -y neovim #python-neovim python3-neovim
+apt-get install software-properties-common -y
+apt-get install python-software-properties -y
+apt-get install -y neovim 
+
+# Need to backport from sid
+apt-get install -y #python-neovim python3-neovim
 
 # python-neovim if notavailableasapackage
 pip2 install --user --upgrade neovim
@@ -428,9 +431,9 @@ let g:bufExplorerFindActive=0
 EOF
 
 # Only if you want to replace vim 
-#sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-#sudo update-alternatives --config vi
-#sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-#sudo update-alternatives --config vim
-#sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-#sudo update-alternatives --config editor
+#update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+#update-alternatives --config vi
+#update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+#update-alternatives --config vim
+#update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+#update-alternatives --config editor

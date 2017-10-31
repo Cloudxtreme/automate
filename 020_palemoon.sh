@@ -9,16 +9,16 @@
 PALEMOON_VERSION=27.5.0
 PALEMOON_HOME=/opt
 wget -c --directory-prefix /var/tmp http://linux.palemoon.org/files/${PALEMOON_VERSION}/palemoon-${PALEMOON_VERSION}.en-US.linux-x86_64.tar.bz2
-sudo tar -xjvf /var/tmp/palemoon-${PALEMOON_VERSION}.en-US.linux-x86_64.tar.bz2 -C ${PALEMOON_HOME}
-sudo ln -sf ${PALEMOON_HOME}/palemoon/palemoon /usr/bin/palemoon
+tar -xjvf /var/tmp/palemoon-${PALEMOON_VERSION}.en-US.linux-x86_64.tar.bz2 -C ${PALEMOON_HOME}
+ln -sf ${PALEMOON_HOME}/palemoon/palemoon /usr/bin/palemoon
 
-sudo ln -sf ${PALEMOON_HOME}/palemoon/browser/chrome/icons/default/default16.png /usr/share/icons/hicolor/16x16/apps/palemoon.png
-sudo ln -sf ${PALEMOON_HOME}/palemoon/browser/chrome/icons/default/default32.png /usr/share/icons/hicolor/32x32/apps/palemoon.png
-sudo ln -sf ${PALEMOON_HOME}/palemoon/browser/chrome/icons/default/default48.png /usr/share/icons/hicolor/48x48/apps/palemoon.png
-sudo ln -sf ${PALEMOON_HOME}/palemoon/browser/icons/mozicon128.png /usr/share/icons/hicolor/128x128/apps/palemoon.png
-sudo update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/palemoon 100
+ln -sf ${PALEMOON_HOME}/palemoon/browser/chrome/icons/default/default16.png /usr/share/icons/hicolor/16x16/apps/palemoon.png
+ln -sf ${PALEMOON_HOME}/palemoon/browser/chrome/icons/default/default32.png /usr/share/icons/hicolor/32x32/apps/palemoon.png
+ln -sf ${PALEMOON_HOME}/palemoon/browser/chrome/icons/default/default48.png /usr/share/icons/hicolor/48x48/apps/palemoon.png
+ln -sf ${PALEMOON_HOME}/palemoon/browser/icons/mozicon128.png /usr/share/icons/hicolor/128x128/apps/palemoon.png
+update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/palemoon 100
 
-sudo bash -c "cat > /usr/share/applications/palemoon.desktop" <<'EOF'
+bash -c "cat > /usr/share/applications/palemoon.desktop" <<'EOF'
 [Desktop Entry]
 Version=1.0
 Name=Pale Moon Web Browser

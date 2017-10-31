@@ -39,4 +39,4 @@ URL_LIST=( \
 #for URL in ${URL_LIST[*]}; do printf "   %s\n" ${URL##*/}; done
 for URL in ${URL_LIST[*]}; do printf ${URL}; wget -c ${URL} && dpkg -i ./${URL##*/}; done
 
-sudo apt-get -y -f install
+apt-get -y -f install

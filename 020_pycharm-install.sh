@@ -27,6 +27,6 @@
 #EOF
 #EF
 
-echo 'checkinstall -y --fstrans=no --install=no bash ./install_pycharm.sh 2>&1 | tee err' > checkinstall_pycharm.sh && sudo bash ./checkinstall_pycharm.sh
-sudo dpkg -i /var/tmp/pycharm-community-${PYCHARM_VERSION}/pycharm-community_${PYCHARM_VERSION}-1_amd64.deb
+echo 'checkinstall -y --fstrans=no --install=no bash ./install_pycharm.sh 2>&1 | tee err' > checkinstall_pycharm.sh && bash ./checkinstall_pycharm.sh
+dpkg -i /var/tmp/pycharm-community-${PYCHARM_VERSION}/pycharm-community_${PYCHARM_VERSION}-1_amd64.deb
 

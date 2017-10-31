@@ -1,5 +1,5 @@
-sudo apt-get install linux-firmware
-sudo apt-get install firmware-linux
-sudo apt-get install firmware-linux-free
-sudo apt-get install firmware-linux-nonfree
-sudo apt-get install firmware-misc-nonfree
+apt-get install linux-firmware
+apt-get install firmware-linux
+apt-get install firmware-linux-free
+apt-get install firmware-linux-nonfree
+apt-get install firmware-misc-nonfree

@@ -7,7 +7,7 @@
 # vfs_cache_pressure -  value larger than 100 may negative performance impact:
 # https://www.kernel.org/doc/Documentation/sysctl/vm.txt
 
-#sudo sysctl -a | grep dirty
+#sysctl -a | grep dirty
 # vm.dirty_background_bytes = 0
 # vm.dirty_background_ratio = 10
 # vm.dirty_bytes = 0
@@ -16,12 +16,12 @@
 # vm.dirty_writeback_centisecs = 500
 # vm.dirtytime_expire_seconds = 43200
 
-#sudo sysctl -a | grep ...
+#sysctl -a | grep ...
 # vm.swappiness = 60
 # vm.vfs_cache_pressure = 100
 # vm.max_map_count = 65530
 
-#sudo sysctl -a | grep overcommit
+#sysctl -a | grep overcommit
 # vm.overcommit_kbytes = 0
 # vm.overcommit_memory = 0
 # vm.overcommit_ratio = 50

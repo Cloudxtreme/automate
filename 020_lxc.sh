@@ -59,7 +59,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 #those in alphabetical order.
 
 # Needed for live migrate
-sudo apt-get install criu
+apt-get install criu
 
 ## then you can:
 # lxc launch ubuntu $somename

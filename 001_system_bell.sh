@@ -8,14 +8,14 @@
 #vbell on
 
 # system console
-#sudo echo "setterm -blength 0" > /etc/profile.d/disable-beep.sh
+#echo "setterm -blength 0" > /etc/profile.d/disable-beep.sh
 
 # X11
 xset b off
 
 # .inputrc
-sudo bash -c `echo "set bell-style visible" > /etc/inputrc`
+bash -c `echo "set bell-style visible" > /etc/inputrc`
 
 #all - /etc/modprobe.d/blacklist
-sudo modprobe -r pcspkr
-sudo bash -c `"echo 'blacklist pcspkr'" >> /etc/modprobe.d/nobeep.conf`
+modprobe -r pcspkr
+bash -c `"echo 'blacklist pcspkr'" >> /etc/modprobe.d/nobeep.conf`

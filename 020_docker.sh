@@ -1,25 +1,25 @@
 # Install docker
 set -x 
-echo '#sudo bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"' >  /etc/apt/sources.list.d/docker.list
+echo '#bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"' >  /etc/apt/sources.list.d/docker.list
 echo "deb http://apt.dockerproject.org/repo debian-jessie main" >> /etc/apt/sources.list.d/docker.list 
 
-sudo bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"
-sudo apt-get update
-sudo apt-get -y install -q --no-install-recommends curl ca-certificates
-sudo apt-get -y install --force-yes docker-engine
-#sudo apt-get install -y --force-yes docker-engine=1.9.1-0~jessie
+bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"
+apt-get update
+apt-get -y install -q --no-install-recommends curl ca-certificates
+apt-get -y install --force-yes docker-engine
+#apt-get install -y --force-yes docker-engine=1.9.1-0~jessie
 
-#sudo mkdir -p /var/lib/docker
-#sudo umount /dev/mapper/vg_prime-varLibDockerLV 
-#sudo mount /dev/mapper/vg_prime-varLibDockerLV /var/lib/docker
+#mkdir -p /var/lib/docker
+#umount /dev/mapper/vg_prime-varLibDockerLV 
+#mount /dev/mapper/vg_prime-varLibDockerLV /var/lib/docker
 
-sudo bash -c 'perl -p -i -e "s/#DOCKER_OPTS=\"\"/DOCKER_OPTS=\"--restart=true\"/g"  /etc/default/docker'
-sudo bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --storage-driver=zfs\"|" /etc/default/docker'
-sudo bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --dns 8.8.8.8 --dns 8.8.4.4\"|" /etc/default/docker'
-sudo bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 zfs.fsname=rpool/docker\"|" /etc/default/docker'
+bash -c 'perl -p -i -e "s/#DOCKER_OPTS=\"\"/DOCKER_OPTS=\"--restart=true\"/g"  /etc/default/docker'
+bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --storage-driver=zfs\"|" /etc/default/docker'
+bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --dns 8.8.8.8 --dns 8.8.4.4\"|" /etc/default/docker'
+bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 zfs.fsname=rpool/docker\"|" /etc/default/docker'
 
 # i2p container requires ipv6 
-sudo bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --ipv6\"|" /etc/default/docker'
+bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --ipv6\"|" /etc/default/docker'
 
 # The above can also be passed in /etc/docker/daemon.json
 # For other options:
@@ -35,7 +35,8 @@ fi
 
 DOCKER_OPT[0]='.["dns"] = ["8.8.8.8","8.8.4.4"]'
 DOCKER_OPT[1]='.["storage-driver"] = "zfs"'
-DOCKER_OPT[2]='.["storage-opts"] = ["zfs.fsname=rpool/docker","size=256"]'
+#DOCKER_OPT[2]='.["storage-opts"] = ["zfs.fsname=rpool/docker","size=256"]'
+DOCKER_OPT[2]='.["storage-opts"] = ["zfs.fsname=rpool/docker"]'
 
 for ((i = 0; i < ${#DOCKER_OPT[@]}; ++i)); do
 	OPTION="${DOCKER_OPT[$i]}"
@@ -87,8 +88,13 @@ done
 #		mv -b /tmp/daemon.json.new /etc/docker/daemon.json
 #done
 
-sudo /etc/init.d/docker restart
-#sudo dpkg -i /var/tmp/docker-compose/docker-compose_1.11.0-1_amd64.deb 
+groupadd docker
+#usermod -aG docker $USER
+gpasswd -a $USER docker
+newgrp docker
+
+/etc/init.d/docker restart
+#dpkg -i /var/tmp/docker-compose/docker-compose_1.11.0-1_amd64.deb 
 
 LATEST_URL=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep browser_download_url | cut -d '"' -f 4 | grep docker-compose-$(uname -s)-$(uname -m))
 RELEASE=$(echo ${LATEST_URL} | awk '{split($0,a,"/"); print a[8]}')
@@ -115,7 +121,7 @@ BASE_TMP_DIR=~/tmptmp/checkinstall_tmp
 mkdir -p ${BASE_TMP_DIR}
 
 # do your work
-sudo checkinstall -y --fstrans \
+checkinstall -y --fstrans \
 	--pkgname=docker-compose \
 	--pkgversion=${RELEASE} \
 	--pkgrelease=1 \
@@ -135,4 +141,4 @@ set +x
 curl -o /usr/local/bin/docker-compose -L https://api.github.com/repos/docker/compose/releases/latest && chmod +x /usr/local/bin/docker-compose
 EOF
 
-sudo bash ./checkinstall_it.sh
+bash ./checkinstall_it.sh

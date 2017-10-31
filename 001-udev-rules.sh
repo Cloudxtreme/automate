@@ -57,3 +57,11 @@ EOF
 cat > /etc/udev/rules.d/81-thinkpad-dock.rules << 'EOF'
 KERNEL=="dock.0", ACTION=="change", RUN+="/usr/local/sbin/thinkpad-dock.sh"
 EOF
+
+cat > /etc/udev/rules.d/51-android.rules << 'EOF'
+SUBSYSTEM!="usb", GOTO="android_rules_end"
+
+ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", MODE="0666", GROUP="plugdev", SYMLINK+="android_adb", OWNER="default"
+
+LABEL="android_rules_end"
+EOF

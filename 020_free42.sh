@@ -1,4 +1,4 @@
-sudo apt-get -y install free42-nologo
+apt-get -y install free42-nologo
 mkdir -p ~/.free42/
 touch ~/.free42/print
 touch ~/.free42/state

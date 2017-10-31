@@ -12,7 +12,7 @@ apt-get clean
 #update-alternatives: using /usr/bin/google-chrome-stable to provide /usr/bin/gnome-www-browser (gnome-www-browser) in auto mode
 #update-alternatives: using /usr/bin/google-chrome-stable to provide /usr/bin/google-chrome (google-chrome) in auto mode
 
-#sudo update-alternatives --query x-www-browser
+#update-alternatives --query x-www-browser
 # 
 #Name: x-www-browser
 #Link: /usr/bin/x-www-browser
@@ -55,7 +55,7 @@ rm -rf /etc/apt/sources.list.d/google-chrome.list
 
 mkdir -p /etc/apt/sources.list-available
 cat > /etc/apt/sources.list-available/google-chrome-stable.list << EOF 
-# wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+# wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
 deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 EOF
 

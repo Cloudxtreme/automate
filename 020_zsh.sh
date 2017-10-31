@@ -1,17 +1,17 @@
-sudo apt-get -y install zsh nodejs-legacy
+apt-get -y install zsh nodejs-legacy
 
 # compaudit
 # There are insecure directories: /usr/local/share/zsh/site-functions
-# compaudit | xargs sudo chmod g-w
+# compaudit | xargs chmod g-w
 # compaudit 2>&1 | sed -n '1d; p'
  
-sudo mkdir -p /usr/local/share/zsh/site-functions
-sudo chmod g-w /usr/local/share/zsh/site-functions
+mkdir -p /usr/local/share/zsh/site-functions
+chmod g-w /usr/local/share/zsh/site-functions
 
 cd ~
-sudo chsh -s $(which zsh) ${USER}
+chsh -s $(which zsh) ${USER}
 
-sudo apt-get install -y git
+apt-get install -y git
 # Install zgen plugin manager and zsh quicktart to get a default setup for zsh
 git clone http://github.com/tarjoilija/zgen # available with apt-get install zgen which installs to /usr/share/zgen
 git clone http://github.com/unixorn/zsh-quickstart-kit # FIXME: needs to be packaged
@@ -184,7 +184,7 @@ echo '# Use unset 'QUICKSTART_KIT_REFRESH_IN_DAYS' to disable.' > ~/.zshrc.d/001
 echo 'QUICKSTART_KIT_REFRESH_IN_DAYS=30' >> ~/.zshrc.d/001-quickstart_refresh.zsh
 echo 'ZGEN_PLUGIN_UPDATE_DAYS=30' > ~/.zshrc.d/001-zgen_refresh.zsh
 
-sudo apt-get install -y fonts-powerline powerline
+apt-get install -y fonts-powerline powerline
 # sed -i 's,^\(export LOCATE_PATH=\).*,\1'/var/lib/mlocate/mlocate.db',' ~/.zshrc
 
 # Use powerline-daemon to speedup the prompt.

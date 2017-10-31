@@ -40,8 +40,8 @@ xfconf-query -c xfwm4 -p /general/workspace_count -n -s 8
 # selector which does.
 #set uk keyboard
 #sed -i 's,^\(layouts=\).*,\1'gb',' ~/.config/xfce4/panel/xkb-plugin-18.rc
-sudo apt-get -y  remove xfce4-xkb-plugin 
-sudo killall -HUP $(ps aux | grep -v grep | grep xfce4-xkb-plugin | awk {'print $2'})
+apt-get -y  remove xfce4-xkb-plugin 
+killall -HUP $(ps aux | grep -v grep | grep xfce4-xkb-plugin | awk {'print $2'})
 xfconf-query -c keyboard-layout -p /Default/XkbLayout -n -t string -s gb
 xfconf-query -c keyboard-layout -p /Default/XkbDisable -n -t bool -s false
 

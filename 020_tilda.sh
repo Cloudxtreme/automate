@@ -1,9 +1,9 @@
 
-sudo apt-get -y remove --purge guake
-sudo kill -9 `ps aux | grep -v grep | grep guake | awk {'print $2'}`
+apt-get -y remove --purge guake
+kill -9 `ps aux | grep -v grep | grep guake | awk {'print $2'}`
 #kill -HUP `ps aux |grep -v grep |grep /usr/bin/guake |awk {'print $2'}`
 
-sudo apt-get -y install tilda
+apt-get -y install tilda
 
 mkdir -p ~/.config/autostart
 cat > ~/.config/autostart/tilda.desktop <<'EOF'

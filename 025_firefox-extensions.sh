@@ -1,9 +1,9 @@
-sudo apt-get -y install mozilla-devscripts
-sudo apt-get -y install xul-ext-webdeveloper
-sudo apt-get -y install xul-ext-itsalltext
-sudo apt-get -y install xul-ext-greasemonkey 
-sudo apt-get -y install xul-ext-firebug 
-sudo apt-get -y install xul-ext-firexpath 
+apt-get -y install mozilla-devscripts
+apt-get -y install xul-ext-webdeveloper
+apt-get -y install xul-ext-itsalltext
+apt-get -y install xul-ext-greasemonkey 
+apt-get -y install xul-ext-firebug 
+apt-get -y install xul-ext-firexpath 
 
 # See https://www.legroom.net/howto/firefox
 #user_pref("privacy.trackingprotection.enabled "true");
@@ -33,7 +33,7 @@ sudo apt-get -y install xul-ext-firexpath
 #)
 
 # debian still uses the localstore.rdf store. Probably not firefox-esr FIXME
-sudo bash -c "cat > /etc/iceweasel/profile/xulstore.json" <<'EOF'
+bash -c "cat > /etc/iceweasel/profile/xulstore.json" <<'EOF'
 {
     "about:config": {
         "lockCol": {
@@ -116,7 +116,7 @@ EOF
 # Change firefox/iceweasel preferences in /home and /etc prefs.js
 ## firefox pref value - sets the value of the given user_pref to value variable
 #value=2
-#sudo for i in "browser.startup.page"
+#for i in "browser.startup.page"
 #do
 #    if grep $i /etc/iceweasel/profile/prefs.js
 #    then
@@ -131,7 +131,7 @@ EOF
 #done
 #
 ## firefox pref true - sets the value of the given user_pref to true
-#sudo for i in "privacy.trackingprotection.enabled"
+#for i in "privacy.trackingprotection.enabled"
 #do
 #    print $1
 #    if grep $i /etc/iceweasel/profile/prefs.js
@@ -145,7 +145,7 @@ EOF
 #done
 #
 ## firefox pref clear - sets the value of the given user_pref to empty
-#sudo for i in "browser.newtabpage.directory.ping" "browser.newtabpage.directory.source" "browser.fixup.alternate.suffix"
+#for i in "browser.newtabpage.directory.ping" "browser.newtabpage.directory.source" "browser.fixup.alternate.suffix"
 #do
 #    print $1
 #    if grep $i /etc/iceweasel/profile/prefs.js
@@ -162,7 +162,7 @@ EOF
 #
 #PROFILE_DIR="~/.mozilla/firefox/${PROFILE_NAME}"
 # 
-#sudo for i in "browser.pocket.enabled"
+#for i in "browser.pocket.enabled"
 #do
 #    print $1
 #    if grep $i ${PROFILE_DIR}/prefs.js
@@ -179,7 +179,7 @@ EOF
 #
 #PROFILE_DIR="~/.mozilla/firefox/${PROFILE_NAME}"
 # 
-#sudo for i in "network.http.speculative-parallel-limit"
+#for i in "network.http.speculative-parallel-limit"
 #do
 #    print $1
 #    if grep $i ${PROFILE_DIR}/prefs.js
@@ -284,11 +284,11 @@ do
 	mv ${EXTENSIONS_DIR}/${EXTENSION_NAME} ${ID}
 	mkdir -p /var/tmp/extensions
         mkdir -p  ~/.mozilla/extensions/ 
-	sudo cp -a ${ID} /usr/share/xul-ext/
+	cp -a ${ID} /usr/share/xul-ext/
         #cp -a ${ID} ~/.mozilla/extensions/ 
 	#cp -a ${ID} /var/tmp/extensions/
-	#sudo cp -a ${ID} /usr/lib/iceweasel/extensions/
-	#sudo cp -a ${ID} /usr/share/mozilla/extensions/
+	#cp -a ${ID} /usr/lib/iceweasel/extensions/
+	#cp -a ${ID} /usr/share/mozilla/extensions/
         #cp -a ${ID} ~/.moonchild productions/pale moon/*.default/extensions
 	COUNTER=$((COUNTER + 1))
 	echo ${COUNTER}
@@ -300,7 +300,7 @@ done
 # FIXME xulstore.json location needs fixing.
 # toolbar-menubar 
 # PersonalToolbar
-sudo bash -c "cat > xulstore.json" <<'EOF'
+bash -c "cat > xulstore.json" <<'EOF'
 {
     "chrome://browser/content/browser.xul": {
         "PersonalToolbar": {

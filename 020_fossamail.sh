@@ -6,13 +6,13 @@ FOSSAMAIL_VERSION=38.0.0
 FOSSAMAIL_FILENAME=FossaMail-${FOSSAMAIL_VERSION}.linux-x86_64.tar.bz2
 
 wget -c --directory-prefix /var/tmp http://relmirror.fossamail.org/${FOSSAMAIL_VERSION}/${FOSSAMAIL_FILENAME}
-sudo rm -rf /opt/Fossamail-old
-sudo mv /opt/FossaMail /opt/FossaMail-old
-sudo tar -xjvf /var/tmp/${FOSSAMAIL_FILENAME} -C /opt
+rm -rf /opt/Fossamail-old
+mv /opt/FossaMail /opt/FossaMail-old
+tar -xjvf /var/tmp/${FOSSAMAIL_FILENAME} -C /opt
 
-#sudo git clone -b 25.1_RelBranch -single-branch https://github.com/MoonchildProductions/FossaMail /opt/FossaMail
+#git clone -b 25.1_RelBranch -single-branch https://github.com/MoonchildProductions/FossaMail /opt/FossaMail
 
-sudo bash -c "cat > /usr/share/applications/fossamail.desktop" <<'EOF'
+bash -c "cat > /usr/share/applications/fossamail.desktop" <<'EOF'
 [Desktop Entry]
 Encoding=UTF-8
 Name=Fossamail
@@ -38,7 +38,7 @@ EOF
 # NOW INTEGRATED Fossamail lightning plugin
 #LIGHTNING_VERSION=${FOSSAMAIL_VERSION}
 #wget -c --directory-prefix /var/tmp http://relmirror.fossamail.org/${LIGHTNING_VERSION}/lightning-${LIGHTNING_VERSION}.en-US.linux-x86_64.xpi
-#sudo gunzip /var/tmp/lightning-25.1.9.en-US.linux-x86_64.xpi.gz
+#gunzip /var/tmp/lightning-25.1.9.en-US.linux-x86_64.xpi.gz
 #/opt/FossaMail/FossaMail -install-global-extension lightning-${LIGHTNING_VERSION}.en-US.linux-x86_64.xpi
 
 

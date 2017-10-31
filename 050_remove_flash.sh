@@ -1,1 +1,1 @@
-sudo apt-get -y remove --purge flashplugin-nonfree
+apt-get -y remove --purge flashplugin-nonfree

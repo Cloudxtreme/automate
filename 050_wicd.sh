@@ -1,23 +1,23 @@
 # Remove network-manager if present.
-sudo apt-get -y remove --purge network-manager* gir1.2-networkmanager-1.0 gir1.2-nmgtk-common libnm-*
+apt-get -y remove --purge network-manager* gir1.2-networkmanager-1.0 gir1.2-nmgtk-common libnm-*
 
-sudo apt-get -y remove --purge libnm-gtk
+apt-get -y remove --purge libnm-gtk
 
-sudo rm /home/user/.config/autostart/nm-applet.destop
+rm /home/user/.config/autostart/nm-applet.destop
 
 # At some point we will move from ifconfig and iwconfig to ip and iw but wicd seems to only be partially their so:
-sudo apt-get -y install iw net-tools iproute2
-sudo apt-get -y install wicd wicd-gtk wicd-curses
+apt-get -y install iw net-tools iproute2
+apt-get -y install wicd wicd-gtk wicd-curses
 
 # Stop the gtk wicd client, it doesn't like files being changes under it. Even if you delette the file, when it exits it writes out its settings.
 PID=`ps aux | grep python | grep wicd-client| awk {'print $2'}`
-sudo kill -9 ${PID}
+kill -9 ${PID}
 
 
 #sed -i 's,^\(wireless_interface = \).*,\1'wlan0',' /etc/wicd/manager-settings.conf
 
 # Add wireless settings
-sudo bash -c "cat > /etc/wicd/wireless-settings.conf" <<'EOF'
+bash -c "cat > /etc/wicd/wireless-settings.conf" <<'EOF'
 [9C:97:26:79:37:57]
 dhcphostname = debian
 bssid = 9C:97:26:79:37:57
@@ -48,7 +48,7 @@ postdisconnectscript = None
 automatic = 1
 EOF
 
-sudo bash -c "cat >> /etc/wicd/wireless-settings.conf" <<'EOF'
+bash -c "cat >> /etc/wicd/wireless-settings.conf" <<'EOF'
 
 [A4:B1:E9:D1:75:09]
 dhcphostname = debian
@@ -80,7 +80,7 @@ postdisconnectscript = None
 EOF
 
 # reload the server
-sudo /etc/init.d/wicd force-reload
+/etc/init.d/wicd force-reload
 
 # start the gtk client again
 /usr/bin/python -O /usr/share/wicd/gtk/wicd-client.py &
@@ -88,9 +88,9 @@ sudo /etc/init.d/wicd force-reload
 
 sleep 20
 
-sudo sed -i 's,^\(automatic = \).*,\1'1',' /etc/wicd/wireless-settings.conf
-sudo sed -i 's,^\(essid = \).*,\1'PlusnetWireless793757',' /etc/wicd/wireless-settings.conf
-sudo sed -i 's,^\(key = \).*,\1'794900B697',' /etc/wicd/wireless-settings.conf
-sudo sed -i 's,^\(dns1 = \).*,\1'8.8.8.8',' /etc/wicd/wireless-settings.conf
+sed -i 's,^\(automatic = \).*,\1'1',' /etc/wicd/wireless-settings.conf
+sed -i 's,^\(essid = \).*,\1'PlusnetWireless793757',' /etc/wicd/wireless-settings.conf
+sed -i 's,^\(key = \).*,\1'794900B697',' /etc/wicd/wireless-settings.conf
+sed -i 's,^\(dns1 = \).*,\1'8.8.8.8',' /etc/wicd/wireless-settings.conf
 
 

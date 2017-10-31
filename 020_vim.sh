@@ -1,8 +1,8 @@
 set +x
-#sudo apt-get install vim-gtk
+#apt-get install vim-gtk
 
-sudo sed -i -e 's/"syntax on/syntax on/' /etc/vim/vimrc
-sudo sed -i -e 's/"set background=dark/set background=dark/' /etc/vim/vimrc
+sed -i -e 's/"syntax on/syntax on/' /etc/vim/vimrc
+sed -i -e 's/"set background=dark/set background=dark/' /etc/vim/vimrc
 
 # Macros
 # Format json
@@ -171,6 +171,9 @@ Plugin 'fisadev/vim-isort'	 " Automatically sort python imports
 Plugin 'klen/python-mode'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
+
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " FZF 
 set rtp+=~/.fzf

@@ -1,4 +1,4 @@
-sudo apt-get -y install conky-all
+apt-get -y install conky-all
 
 
 mkdir -p ~/.conkyrc.d

@@ -1,1 +1,1 @@
-sudo apt-get -y remove --purge xscreensaver xscreensaver-data
+apt-get -y remove --purge xscreensaver xscreensaver-data

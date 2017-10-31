@@ -5,28 +5,28 @@
 
 # Jessie
 # Pin to minor release
-# wget -O - https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+# wget -O - https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
 # deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main
 
 # Pin  to major version
-# wget -O - https://repo.saltstack.com/apt/debian/8/amd64/2017.7/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+# wget -O - https://repo.saltstack.com/apt/debian/8/amd64/2017.7/SALTSTACK-GPG-KEY.pub | apt-key add -
 # deb http://repo.saltstack.com/apt/debian/8/amd64/2017.7 jessie main
 
 # Pin to latest release
-# wget -O - https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+# wget -O - https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
 # deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main
 
 # Stretch
 # Pin to minor release
-# wget -O - https://repo.saltstack.com/apt/debian/9/amd64/archive/2017.7.1/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+# wget -O - https://repo.saltstack.com/apt/debian/9/amd64/archive/2017.7.1/SALTSTACK-GPG-KEY.pub | apt-key add -
 # deb http://repo.saltstack.com/apt/debian/9/amd64/archive/2017.7.1 stretch main
 
 # Pin to major version
-# wget -O - https://repo.saltstack.com/apt/debian/9/amd64/2017.7/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+# wget -O - https://repo.saltstack.com/apt/debian/9/amd64/2017.7/SALTSTACK-GPG-KEY.pub | apt-key add -
 # deb http://repo.saltstack.com/apt/debian/9/amd64/2017.7 stretch main
 
 # Pin to latest release
-# wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+# wget -O - https://repo.saltstack.com/apt/debian/9/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
 # deb http://repo.saltstack.com/apt/debian/9/amd64/latest stretch main
 
 DEBIAN_VERSION=8
@@ -44,11 +44,11 @@ SALT_VERSION=latest
 REFRESHED_AT=2017-09-31
 
 mkdir -p /etc/apt/sources.list-available
-#sudo bash -c "wget -q -O- "http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key" | apt-key add -"
-wget -O - https://repo.saltstack.com/apt/debian/${DEBIAN_VERSION}/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -
+#bash -c "wget -q -O- "http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key" | apt-key add -"
+wget -O - https://repo.saltstack.com/apt/debian/${DEBIAN_VERSION}/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
 
 # NB Packages now have dh-systemd deps and --with-systemd treat as debian upstream
-echo "#wget -O - https://repo.saltstack.com/apt/debian/${DEBIAN_VERSION}/amd64/latest/SALTSTACK-GPG-KEY.pub | sudo apt-key add -" >> /etc/apt/sources.list-available/saltstack-${DEBIAN_RELEASE}.list
+echo "#wget -O - https://repo.saltstack.com/apt/debian/${DEBIAN_VERSION}/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -" >> /etc/apt/sources.list-available/saltstack-${DEBIAN_RELEASE}.list
 echo "deb http://repo.saltstack.com/apt/debian/${DEBIAN_VERSION}/amd64/${SALT_VERSION} ${DEBIAN_VERSION} main" > /etc/apt/sources.list-available/saltstack-${DEBIAN_RELEASE}.list
 #ln -s /etc/apt/sources.list-available/saltstack-${DEBIAN_RELEASE}.list /etc/apt/sources.list.d/saltstack-${DEBIAN_RELEASE}.list
 
@@ -91,7 +91,7 @@ apt-get install -y -o DPkg::Options::=--force-confold \
 	python-jinja2 \ 
 	python-requests 
 
-sudo apt-get -y install salt-client
+apt-get -y install salt-client
 
 # Salt-master
 apt-get install -yq -o -o DPkg::Options::=--force-confold --no-install-recommends \

@@ -1,33 +1,33 @@
-sudo apt-get -y install curl apt-file
-sudo apt-get -y install xclip
-sudo apt-get -y install sshpass
-sudo apt-get -y install git
-sudo apt-get -y install meld
-sudo apt-get -y install gitk
-sudo apt-get -y install zsync
-sudo apt-get -y install jq
-sudo apt-get -y install pv
-sudo apt-get -y install mpv
-sudo apt-get -y install rar
-sudo apt-get -y install inxi
-sudo apt-get -y --force-yes install xmlstarlet
-sudo apt-get -y install hexedit
-sudo apt-get -y install geeqie
-sudo apt-get -y install sshpass
-sudo apt-get -y install wicd-curses
-sudo apt-get -y install htop
-sudo apt-get -y install iotop
-sudo apt-get -y install atril 
-sudo apt-get -y install youtube-dl
-sudo apt-get -y install rox-filer
-sudo apt-get -y install checkinstall
-sudo apt-get -y install ntp ntpdate
-sudo apt-get -y install gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good gstreamer1.0-libav
-sudo apt-get -y install libreoffice-pdfimport 
-sudo apt-get -y install terminology
-sudo apt-get -y install qupzilla
-sudo apt-get -y install firmware-iwlwifi #For thinkpad wifi: Intel 5100 AGN [Shiloh] 
-sudo apt-get install grub-pc grub2 gpart
+apt-get -y install curl apt-file
+apt-get -y install xclip
+apt-get -y install sshpass
+apt-get -y install git
+apt-get -y install meld
+apt-get -y install gitk
+apt-get -y install zsync
+apt-get -y install jq
+apt-get -y install pv
+apt-get -y install mpv
+apt-get -y install rar
+apt-get -y install inxi
+apt-get -y --force-yes install xmlstarlet
+apt-get -y install hexedit
+apt-get -y install geeqie
+apt-get -y install sshpass
+apt-get -y install wicd-curses
+apt-get -y install htop
+apt-get -y install iotop
+apt-get -y install atril 
+apt-get -y install youtube-dl
+apt-get -y install rox-filer
+apt-get -y install checkinstall
+apt-get -y install ntp ntpdate
+apt-get -y install gstreamer1.0-plugins-ugly gstreamer1.0-plugins-good gstreamer1.0-libav
+apt-get -y install libreoffice-pdfimport 
+apt-get -y install terminology
+apt-get -y install qupzilla
+apt-get -y install firmware-iwlwifi #For thinkpad wifi: Intel 5100 AGN [Shiloh] 
+apt-get -y install grub-pc grub2 gpart
 apt-get install -y vim-gtk software-properties-common apt-transport-https wget curl lvm2
 
 
