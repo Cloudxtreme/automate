@@ -6,6 +6,14 @@ channel = #devuan
 text_hidejoinpart = 1
 
 network = freenode
+channel = #devuan-dev
+text_hidejoinpart = 1
+
+network = freenode
+channel = #devuan-arm
+text_hidejoinpart = 1
+
+network = freenode
 channel = #debianfork
 text_hidejoinpart = 1
 EOF
