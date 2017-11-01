@@ -25,6 +25,7 @@ bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --ipv6\"|" /etc/defau
 # For other options:
 # https://github.com/moby/moby/pull/23657/files?short_path=ca4f406
 # https://gist.github.com/lvdh/1f2d50ad49274413d3e501b71a59e819
+mkdir -p /etc/docker
 if [ ! -f /etc/docker/daemon.json ]
 then
 	touch /etc/docker/daemon.json
