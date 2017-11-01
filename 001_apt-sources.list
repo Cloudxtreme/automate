@@ -1,85 +1,85 @@
 # avoid duplicates
-sudo rm /etc/apt/sources.list
-sudo rm /etc/apt/sources.list.d/devuan
+rm /etc/apt/sources.list
+rm /etc/apt/sources.list.d/devuan
 
 
-sudo bash -c "cat > /etc/apt/sources.list.d/devuan_jessie.list" <<'EOF'
+bash -c "cat > /etc/apt/sources.list.d/devuan_jessie.list" <<'EOF'
 # deb http://us.mirror.devuan.org/merged/ jessie main
 
-deb http://auto.mirror.devuan.org/merged/ jessie main
-deb-src http://auto.mirror.devuan.org/merged/ jessie main
+deb http://pkgmaster.devuan.org/merged/ jessie main
+deb-src http://pkgmaster.devuan.org/merged/ jessie main
 EOF
 
-sudo bash -c "cat > /etc/apt/sources.list.d/devuan_jessie-updates" << 'EOF'
-deb http://auto.mirror.devuan.org/merged/ jessie-security main
-deb-src http://auto.mirror.devuan.org/merged/ jessie-security main
+bash -c "cat > /etc/apt/sources.list.d/devuan_jessie-updates" << 'EOF'
+deb http://pkgmaster.devuan.org/merged/ jessie-security main
+deb-src http://pkgmaster.devuan.org/merged/ jessie-security main
 EOF
 
-sudo bash -c "cat > /etc/apt/sources.list.d/devuan_jessie-updates" << 'EOF'
+bash -c "cat > /etc/apt/sources.list.d/devuan_jessie-updates" << 'EOF'
 # jessie-updates, previously known as 'volatile'
-deb http://auto.mirror.devuan.org/merged/ jessie-updates main
-deb-src http://auto.mirror.devuan.org/merged/ jessie-updates main
+deb http://pkgmaster.devuan.org/merged/ jessie-updates main
+deb-src http://pkgmaster.devuan.org/merged/ jessie-updates main
 
 EOF
 
-sudo bash -c "cat > /etc/apt/sources.list.d/devuan_jessie-backports.list" << 'EOF'
+bash -c "cat > /etc/apt/sources.list.d/devuan_jessie-backports.list" << 'EOF'
 
-deb http://auto.mirror.devuan.org/merged/ jessie-backports main
-deb-src http://auto.mirror.devuan.org/merged/ jessie-backports main
+deb http://pkgmaster.devuan.org/merged/ jessie-backports main
+deb-src http://pkgmaster.devuan.org/merged/ jessie-backports main
 
 EOF
 
-sudo bash -c "cat > /etc/apt/sources.list.d/devuan_ascii.list" <<'EOF'
+bash -c "cat > /etc/apt/sources.list.d/devuan_ascii.list" <<'EOF'
 # deb http://us.mirror.devuan.org/merged/ ascii main
 
-deb http://auto.mirror.devuan.org/merged/ ascii main
-deb-src http://auto.mirror.devuan.org/merged/ ascii main
+deb http://pkgmaster.devuan.org/merged/ ascii main
+deb-src http://pkgmaster.devuan.org/merged/ ascii main
 
 # ascii-security, previously known as 'volatile'
-deb http://auto.mirror.devuan.org/merged/ ascii-security main
-deb-src http://auto.mirror.devuan.org/merged/ ascii-security main
+deb http://pkgmaster.devuan.org/merged/ ascii-security main
+deb-src http://pkgmaster.devuan.org/merged/ ascii-security main
 
 # ascii-updates, previously known as 'volatile'
-deb http://auto.mirror.devuan.org/merged/ ascii-updates main
-deb-src http://auto.mirror.devuan.org/merged/ ascii-updates main
+deb http://pkgmaster.devuan.org/merged/ ascii-updates main
+deb-src http://pkgmaster.devuan.org/merged/ ascii-updates main
 
 EOF
 
-sudo bash -c "cat > /etc/apt/sources.list.d/devuan_beowulf.list" <<'EOF'
+bash -c "cat > /etc/apt/sources.list.d/devuan_beowulf.list" <<'EOF'
 # deb http://us.mirror.devuan.org/merged/ beowulf main
-deb http://auto.mirror.devuan.org/merged/ beowulf main
-deb-src http://auto.mirror.devuan.org/merged/ beowulf main
+deb http://pkgmaster.devuan.org/merged/ beowulf main
+deb-src http://pkgmaster.devuan.org/merged/ beowulf main
 
 # beowulf-security, previously known as 'volatile'
-deb http://auto.mirror.devuan.org/merged/ beowulf-security main
-deb-src http://auto.mirror.devuan.org/merged/ beowulf-security main
+deb http://pkgmaster.devuan.org/merged/ beowulf-security main
+deb-src http://pkgmaster.devuan.org/merged/ beowulf-security main
 
 # ascii-updates, previously known as 'volatile'
-deb http://auto.mirror.devuan.org/merged/ beowulf-updates main
-deb-src http://auto.mirror.devuan.org/merged/ beowulf-updates main
+deb http://pkgmaster.devuan.org/merged/ beowulf-updates main
+deb-src http://pkgmaster.devuan.org/merged/ beowulf-updates main
 
 EOF
 
-sudo bash -c "cat > /etc/apt/sources.list.d/devuan_ceres.list" <<'EOF'
+bash -c "cat > /etc/apt/sources.list.d/devuan_ceres.list" <<'EOF'
 # deb http://us.mirror.devuan.org/merged/ ceres main
 
-deb http://auto.mirror.devuan.org/merged/ ceres main
-deb-src http://auto.mirror.devuan.org/merged/ ceres main
+deb http://pkgmaster.devuan.org/merged/ ceres main
+deb-src http://pkgmaster.devuan.org/merged/ ceres main
 
 # ceres-security, previously known as 'volatile'
-#deb http://auto.mirror.devuan.org/merged/ ceres-security main
-#deb-src http://auto.mirror.devuan.org/merged/ ceres-security main
+#deb http://pkgmaster.devuan.org/merged/ ceres-security main
+#deb-src http://pkgmaster.devuan.org/merged/ ceres-security main
 
 # ceres-updates, previously known as 'volatile'
-#deb http://auto.mirror.devuan.org/merged/ ceres-updates main
-#deb-src http://auto.mirror.devuan.org/merged/ ceres-updates main
+#deb http://pkgmaster.devuan.org/merged/ ceres-updates main
+#deb-src http://pkgmaster.devuan.org/merged/ ceres-updates main
 
 EOF
 
 
-sudo apt-get update && sudo apt-get install -y --force-yes devuan-keyring
+apt-get update && apt-get install -y --force-yes devuan-keyring
 
-#sudo bash -c "cat > /etc/apt/sources.list.d/x2go.list" <<'EOF'
+#bash -c "cat > /etc/apt/sources.list.d/x2go.list" <<'EOF'
 ## apt-key adv --recv-keys --keyserver keys.gnupg.net E1F958385BFE2B6E
 ## X2Go Repository (release builds)
 #deb http://packages.x2go.org/debian jessie main
@@ -93,10 +93,10 @@ sudo apt-get update && sudo apt-get install -y --force-yes devuan-keyring
 ## X2Go Repository (sources of nightly builds)
 ##deb-src http://packages.x2go.org/debian jessie heuler
 #
-## sudo apt-get install x2goserver x2goserver-xsession
+## apt-get install x2goserver x2goserver-xsession
 #EOF
 
-sudo bash -c "cat > /etc/apt/sources.list.d/saltstack.list" <<'EOF'
+bash -c "cat > /etc/apt/sources.list.d/saltstack.list" <<'EOF'
 # wget -q -O- "http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key" | apt-key add -
 
 deb http://debian.saltstack.com/debian jessie-saltstack main
@@ -105,7 +105,7 @@ EOF
 bash -c "wget -q -O- "http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key" | apt-key add -"
 
 # the docker packages have go over to systemd so these wont install
-sudo bash -c "cat > /etc/apt/sources.list.d/docker.list" <<'EOF'
+bash -c "cat > /etc/apt/sources.list.d/docker.list" <<'EOF'
 #apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 # Debian Jessie
