@@ -4,6 +4,7 @@ rm /etc/apt/sources.list.d/devuan
 
 ACTIVE=/etc/apt/sources.list.d/
 AVAILABLE=/etc/apt/sources.list-available/
+GROUPS="main contrib non-free"
 mkdir -p "${AVAILABLE}"
 
 ACTIVE_LIST=('devuan_ascii' 'devuan_ascii-security' 'devuan_ascii-updates' 'devuan_ascii-backports')
@@ -13,8 +14,8 @@ echo ${#ACTIVE_LIST[@]}
 for RELEASE in "${ACTIVE_LIST[@]}"; do
 	echo "${RELEASE}"
 	bash -c "cat > "${AVAILABLE}"/"${RELEASE}".list" <<EOF
-deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" main
-deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" main
+deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
+deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
 EOF
 ln -sf "${AVAILABLE}"/"${RELEASE}".list "${ACTIVE}"/"${RELEASE}".list
 done
@@ -23,8 +24,8 @@ echo ${#INACTIVE_LIST[@]}
 for RELEASE in "${INACTIVE_LIST[@]}"; do
 	echo "${RELEASE}"
 	bash -c "cat > "${AVAILABLE}"/"${RELEASE}".list" <<EOF
-deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" main
-deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" main
+deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
+deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
 EOF
 done
 
