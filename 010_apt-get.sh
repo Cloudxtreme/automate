@@ -3,6 +3,7 @@ apt-get -y install xclip
 apt-get -y install sshpass
 apt-get -y install git
 apt-get -y install meld
+apt-get -y install tig
 apt-get -y install gitk
 apt-get -y install zsync
 apt-get -y install jq
