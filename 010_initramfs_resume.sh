@@ -10,12 +10,14 @@
 #    You should set the RESUME variable in
 INITRAMFS_HOME=/etc/initramfs-tools/conf.d/
 
-DEVICE=/dev/sda2
-UUID=f4d19cc8-2c3e-4061-a618-7974cb88bfec
-RESUME="RESUME=none"
-RESUME="RESUME=UUID=${UUID}"
-RESUME="RESUME=/dev/${DEVICE}"
-RESUME="RESUME=auto"
+DEVICE=${1:/dev/sda7}
+RESUME="RESUME=${DEVICE}"
+#UUID=f4d19cc8-2c3e-4061-a618-7974cb88bfec
+#RESUME="RESUME=none"
+#RESUME="RESUME=UUID=${UUID}"
+#RESUME="RESUME=auto"
 
 
 echo "${RESUME}" > ${INITRAMFS_HOME}/resume
+
+update-initramfs -v -u -t -k all
