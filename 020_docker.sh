@@ -1,12 +1,12 @@
 # Install docker
 set -x 
 echo '#bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"' >  /etc/apt/sources.list.d/docker.list
-echo "deb http://apt.dockerproject.org/repo debian-jessie main" >> /etc/apt/sources.list.d/docker.list 
+echo "deb http://apt.dockerproject.org/repo debian-stretch main" >> /etc/apt/sources.list.d/docker.list 
 
 bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"
 apt-get update
 apt-get -y install -q --no-install-recommends curl ca-certificates
-apt-get -y install --force-yes docker-engine
+apt-get -y install --force-yes docker-engine jq
 #apt-get install -y --force-yes docker-engine=1.9.1-0~jessie
 
 #mkdir -p /var/lib/docker
