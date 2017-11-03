@@ -4,18 +4,18 @@ rm /etc/apt/sources.list.d/devuan
 
 ACTIVE=/etc/apt/sources.list.d/
 AVAILABLE=/etc/apt/sources.list-available/
-GROUPS="main contrib non-free"
 mkdir -p "${AVAILABLE}"
 
+GROUPS=(main contrib non-free)
 ACTIVE_LIST=('devuan_ascii' 'devuan_ascii-security' 'devuan_ascii-updates' 'devuan_ascii-backports')
 INACTIVE_LIST=('devuan_jessie' 'devuan_jessie-security' 'devuan_jessie-updates' 'devuan_jessie-backports' 'devuan_beowulf' 'devuan_beowulf-security' 'devuan_beowulf-updates' 'devuan_beowulf-backports' 'devuan_ceres' 'devuan_experimental')
 
 echo ${#ACTIVE_LIST[@]}
 for RELEASE in "${ACTIVE_LIST[@]}"; do
 	echo "${RELEASE}"
-	bash -c "cat > "${AVAILABLE}"/"${RELEASE}".list" <<EOF
-deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
-deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
+	bash -c "cat > ${AVAILABLE}/${RELEASE}.list" <<EOF
+deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
+deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
 EOF
 ln -sf "${AVAILABLE}"/"${RELEASE}".list "${ACTIVE}"/"${RELEASE}".list
 done
@@ -23,22 +23,22 @@ done
 echo ${#INACTIVE_LIST[@]}
 for RELEASE in "${INACTIVE_LIST[@]}"; do
 	echo "${RELEASE}"
-	bash -c "cat > "${AVAILABLE}"/"${RELEASE}".list" <<EOF
-deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
-deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS}"
+	bash -c "cat > ${AVAILABLE}/${RELEASE}.list" <<EOF
+deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
+deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
 EOF
 done
 
-bash -c "cat > "${AVAILABLE}"/saltstack.list" <<EOF
+bash -c "cat > ${AVAILABLE}/saltstack.list" <<EOF
 # wget -q -O- "http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key" | apt-key add -
 
 deb http://debian.saltstack.com/debian stretch-saltstack main
 EOF
 ln -sf "${AVAILABLE}"/saltstack.list "${ACTIVE}"/saltstack.list
-bash -c "wget -q -O- "http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key" | apt-key add -"
+wget -q -O- http://debian.saltstack.com/debian-salt-team-joehealy.gpg.key | apt-key add -
 
 # the docker packages have go over to systemd so these wont install
-bash -c "cat > "${AVAILABLE}"/docker.list" <<EOF
+bash -c cat > "${AVAILABLE}"/docker.list <<EOF
 #apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 # Debian stretch
