@@ -3,7 +3,8 @@ cat > /etc/udev/rules.d/99-saleae-logic.rules << 'EOF'
 # being part of the plugdev group. Simply copy the file to /etc/udev/rules.d/
 # and plug the device
 
-BUS!="usb", ACTION!="add", SUBSYSTEM!=="usb_device", GOTO="saleae_logic_rules_end"
+#BUS!="usb", ACTION!="add", SUBSYSTEM!=="usb_device", GOTO="saleae_logic_rules_end"
+SUBSYSTEM!="usb", GOTO="saleae_logic_rules_end"
 
 # Saleae Logic analyzer (USB Based)
 # Bus 006 Device 006: ID 0925:3881 Lakeview Research
