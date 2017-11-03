@@ -8,7 +8,9 @@ mkdir -p "${AVAILABLE}"
 
 SECTION=(main contrib non-free)
 ACTIVE_LIST=('ascii' 'ascii-security' 'ascii-updates' 'ascii-backports')
-INACTIVE_LIST=('jessie' 'jessie-security' 'jessie-updates' 'jessie-backports' 'beowulf' 'beowulf-security' 'beowulf-updates' 'beowulf-backports' 'ceres' 'experimental')
+INACTIVE_LIST=('jessie' 'jessie-security' 'jessie-updates' 'jessie-backports' 'beowulf' 'beowulf-security' 'beowulf-updates' 'beowulf-backports' 'ceres')
+
+OTHER_LIST=('experimental')
 
 echo ${#ACTIVE_LIST[@]}
 for RELEASE in "${ACTIVE_LIST[@]}"; do
@@ -26,6 +28,15 @@ for RELEASE in "${INACTIVE_LIST[@]}"; do
 	bash -c "cat > ${AVAILABLE}/devuan_${RELEASE}.list" <<EOF
 deb http://pkgmaster.devuan.org/merged/ ${RELEASE} ${SECTION[@]}
 deb-src http://pkgmaster.devuan.org/merged/ ${RELEASE} ${SECTION[@]}
+EOF
+done
+
+echo ${#OTHER_LIST[@]}
+for RELEASE in "${OTHER_LIST[@]}"; do
+	echo "${RELEASE}"
+	bash -c "cat > ${AVAILABLE}/devuan_${RELEASE}.list" <<EOF
+deb http://packages.devuan.org/devuan ${RELEASE} main
+deb-src http://packages.devuan.org/devuan ${RELEASE} main
 EOF
 done
 
