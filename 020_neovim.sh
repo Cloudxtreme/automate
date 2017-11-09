@@ -1,14 +1,13 @@
 # Install Neovim
 apt-get install software-properties-common -y
-apt-get install python-software-properties -y
 apt-get install -y neovim 
 
 # Need to backport from sid
 apt-get install -y #python-neovim python3-neovim
 
 # python-neovim if notavailableasapackage
-pip2 install --user --upgrade neovim
-pip3 install --user --upgrade neovim
+#pip2 install --user --upgrade neovim
+#pip3 install --user --upgrade neovim
 
 
 
