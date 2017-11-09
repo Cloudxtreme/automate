@@ -1,6 +1,6 @@
-apt-get install tmux
-apt-get install tmux-plugin-manager
-apt-get install tmuxinator
+apt-get install -y tmux
+apt-get install -y tmux-plugin-manager
+apt-get install -y tmuxinator
 
 # https://github.com/Netherdrake/Dotfiles/tree/master/config/tmux
 # wget -c --directory-prefix ~/.config/tmux/ https://raw.githubusercontent.com/Netherdrake/Dotfiles/master/config/tmux/default.sh
@@ -169,6 +169,7 @@ set -g pane-active-border-fg colour069 # 24 blue
 # set -g pane-active-border-bg black
 EOF
 
+mkdir -p ~/.zshrc.d/``
 echo "source /usr/share/zsh/vendor_completions/_tmuxinator" > ~/.zshrc.d/006_tmuxinator.zsh
 
 
