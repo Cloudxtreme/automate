@@ -1,16 +1,22 @@
 set +x
 # get and install refracta stuff
 # For jessie yad needs to be built from testing/ascii (and gtk3 dep changed in control)
-apt-get -y install autotools-dev libgtk2.0-dev pkg-config intltool
+#apt-get -y install autotools-dev libgtk2.0-dev pkg-config intltool 
+apt-get install -y sbuild fakeroot schroot
 
-cd /usr/src
-apt-get source yad
-YAD_VERSION=$(apt-cache policy yad|sed -n 3p | sed s/:/\\n/g|sed -n 2p| sed s/-/\\n/g |  sed -e 's/^[ \t]*//' | sed -n 1p)
-sed -i -e s/libgtk-3-dev/libgtk2.0-dev/g /usr/src/yad-${YAD_VERSION}/debian/control
-sed -i -e s/gtk3/gtk2/g /usr/src/yad-${YAD_VERSION}/debian/rules
-cd /usr/src/yad-${YAD_VERSION}
-dpkg-buildpackage -us -uc -b
-dpkg -i ../yad_${YAD_VERSION}-1_amd64.deb
+cd /usr/src || exit
+RELEASE=$(awk -F '/' \{'print $1'\} < /etc/devuan_version | awk '$1=$1')
+YAD_VERSION=$(apt-cache policy yad|sed -n 3p | awk -F ':' \{'print $2'\} | awk '$1=$1')
+gbp import-dsc -v --allow-unauthenticated http://cdn-fastly.deb.debian.org/debian/pool/main/y/yad/yad_"${YAD_VERSION}".dsc
+
+sed -i -e s/libgtk-3-dev/libgtk2.0-dev/g /usr/src/yad-"${YAD_VERSION}"/debian/control
+sed -i -e s/gtk3/gtk2/g /usr/src/yad-"${YAD_VERSION}"/debian/rules
+cd /usr/src/yad || exit
+#dpkg-buildpackage -us -uc -b
+gbp buildpackage --git-builder=sbuild -A -v -d "${RELEASE}"
+dpkg -i ../yad_"${YAD_VERSION}"_amd64.deb
+
+sudo schroot --end-session --all-sessions
 
 # Refractasnapshot 10 introduces support of UEFI bootable iso but grub-efi removes grub-pc
 #apt-get install -y grub-efi-amd64
@@ -37,6 +43,6 @@ URL_LIST=( \
 
 #for URL in ${URL_LIST[*]}; do printf "   %s\n" ${URL}; done
 #for URL in ${URL_LIST[*]}; do printf "   %s\n" ${URL##*/}; done
-for URL in ${URL_LIST[*]}; do printf ${URL}; wget -c ${URL} && dpkg -i ./${URL##*/}; done
+for URL in ${URL_LIST[*]}; do echo "${URL}"; wget -c "${URL}" && dpkg -i ./"${URL##*/}"; done
 
 apt-get -y -f install
