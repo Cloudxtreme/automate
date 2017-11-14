@@ -1,6 +1,6 @@
 # avoid duplicates
 rm /etc/apt/sources.list
-rm /etc/apt/sources.list.d/devuan
+rm /etc/apt/sources.list.d/devuan.list
 
 ACTIVE=/etc/apt/sources.list.d
 AVAILABLE=/etc/apt/sources.list-available
