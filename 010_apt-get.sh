@@ -2,7 +2,6 @@ apt-get -y install curl apt-file
 apt-get -y install xclip
 apt-get -y install sshpass
 apt-get -y install git
-apt-get -y install meld
 apt-get -y install tig
 apt-get -y install gitk
 apt-get -y install zsync
@@ -10,6 +9,7 @@ apt-get -y install jq
 apt-get -y install pv
 apt-get -y install mpv
 apt-get -y install rar
+apt-get -y install kpartx
 apt-get -y install inxi
 apt-get -y --force-yes install xmlstarlet
 apt-get -y install hexedit
