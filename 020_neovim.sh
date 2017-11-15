@@ -35,12 +35,14 @@ call vundle#rc()
 " core plugins
 Bundle "gmarik/vundle"
 Bundle "flazz/vim-colorschemes"
-Bundle "kien/ctrlp.vim"
+"Bundle "kien/ctrlp.vim"
+Bundle "ctrlpvim/ctrlp.vim"
 
 " vim main plugins
 Bundle "sjl/gundo.vim"
 Bundle "bling/vim-airline"
 Bundle "vim-airline/vim-airline-themes"
+Bundle "ryanoasis/vim-devicons"
 Bundle "jlanzarotta/bufexplorer"
 Bundle "scrooloose/syntastic.git"
 Bundle "vim-scripts/tComment"
@@ -49,6 +51,7 @@ Bundle "mileszs/ack.vim"
 Bundle "rking/ag.vim"
 Bundle "edsono/vim-matchit"
 Bundle "tpope/vim-fugitive"
+Bundle 'jreybert/vimagit' 
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-repeat"
@@ -66,6 +69,7 @@ Bundle "scrooloose/nerdtree"
 Bundle "tpope/vim-vinegar"
 Bundle "vim-scripts/taglist.vim"
 Bundle "majutsushi/tagbar"
+Bundle "sbdchd/neoformat"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
@@ -83,7 +87,8 @@ Bundle "vim-scripts/SQLUtilities"
 Bundle "NagatoPain/AutoSQLUpperCase.vim"
 
 " autocomplete
-Bundle "Valloric/YouCompleteMe"
+" Bundle "Valloric/YouCompleteMe"
+Bundle 'davidhalter/jedi-vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 
@@ -255,12 +260,48 @@ let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
 let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
+" Syntastic
+" show list of errors and warnings on the current file
+nmap <leader>e :Errors<CR>
+" turn to next or previous errors, after open errors list
+nmap <leader>n :lnext<CR>
+nmap <leader>p :lprevious<CR>
+" check also when just opened the file
+let g:syntastic_check_on_open = 1
+
+" syntastic checker for javascript.
+" eslint is the only tool support JSX.
+" If you don't need write JSX, you can use jshint.
+" And eslint is slow, but not a hindrance
+let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['eslint']
+
+" syntastic checker for python.
+" let g:syntastic_python_checkers = ["pylint"]
+" let g:syntastic_python_checkers = ["flake8"]
+let g:syntastic_python_checkers = ['prospector']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+
+" don't put icons on the sign column (it hides the vcs status icons of signify)
+let g:syntastic_enable_signs = 1
+
+" custom icons (enable them if you use a patched font, and enable the previous 
+" setting)
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+
+
 " YouCompleteMe
-let g:ycm_filetype_blacklist = {}
-let g:ycm_key_list_select_completion = []
-let g:ycm_key_list_previous_completion = []
-let g:ycm_key_invoke_completion = "<C-j>"
-let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_filetype_blacklist = {}
+"let g:ycm_key_list_select_completion = []
+"let g:ycm_key_list_previous_completion = []
+"let g:ycm_key_invoke_completion = "<C-j>"
+"let g:ycm_collect_identifiers_from_tags_files = 1
 
 if executable("ag")
   let g:ackprg = "ag --nogroup --column"
