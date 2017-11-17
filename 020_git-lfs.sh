@@ -18,6 +18,8 @@ OS=debian
 
 DEST=/etc/apt/sources.list-available
 LINK=/etc/apt/sources.list.d
+mkdir -p ${DEST}
+mkdir -p ${LINK}
 
 cat > ${DEST}/git-lfs.list << EOF
 deb https://packagecloud.io/github/git-lfs/${OS}/ ${DIST} main
