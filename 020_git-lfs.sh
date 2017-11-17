@@ -3,7 +3,9 @@ set -x
 # Using in combination with bfg to remove large binary files from a git repo and replace them with a pointer to a uri/url
 # debianized repo
 # git clone https://github.com/git-lfs/git-lfs
-dist=$(lsb_release -c | cut -f2)
+
+#dist=$(lsb_release -c | cut -f2)
+dist=$(cat /etc/devuan_version | awk -F '/' {'print $1'})
 if [ "$dist" == 'jessie' ]
 then 
 	DIST='jessie'
