@@ -197,8 +197,16 @@ nmap <leader>e :Errors<CR>
 " turn to next or previous errors, after open errors list
 nmap <leader>n :lnext<CR>
 nmap <leader>p :lprevious<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 " check also when just opened the file
 let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_enable_signs = 1
 
 " syntastic checker for javascript.
 " eslint is the only tool support JSX.
@@ -211,10 +219,6 @@ let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_python_checkers = ["pylint"]
 " let g:syntastic_python_checkers = ["flake8"]
 let g:syntastic_python_checkers = ['prospector']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs = 1
 
 " don't put icons on the sign column (it hides the vcs status icons of signify)
 let g:syntastic_enable_signs = 1
