@@ -1,22 +1,26 @@
-cat > /etc/apt/sources.list-available/jitsi-unstable.list << 'EOF'
+cat > /etc/apt/sources.list-available/jitsi-stable.list << 'EOF'
  # wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
-deb http://download.jitsi.org/deb stable/
+deb http://download.jitsi.org  stable/
 EOF
 
-cat > /etc/apt/sources.list-available/jitsi-unstable.list << 'EOF'
+cat > /etc/apt/sources.list-available/jitsi-testing.list << 'EOF'
  # wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
-deb http://download.jitsi.org/deb testing/
+deb http://download.jitsi.org  testing/
 EOF
 
 # Nightly
 cat > /etc/apt/sources.list-available/jitsi-unstable.list << 'EOF'
  # wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
-deb http://download.jitsi.org/deb unstable/
+deb http://download.jitsi.org  unstable/
 EOF
 
-ln -s /etc/apt/sources.list-available/jitsi-unstable.list /etc/apt/sources.list.d/jitsi-unstable.list
+ln -sf /etc/apt/sources.list-available/jitsi-unstable.list /etc/apt/sources.list.d/jitsi-unstable.list
 
 wget -qO - https://download.jitsi.org/jitsi-key.gpg.key | apt-key add -
+
+# jitsi unstable GPG error: NO_PUBKEY C697D823EB0AB654 
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C697D823EB0AB654
+
 
 # Update your package list:
 
