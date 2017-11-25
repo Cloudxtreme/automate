@@ -8,14 +8,22 @@
 ## A .deb package can be created for zfs-auto-snapshot:
 apt-get -y install git build-essential zfsnap 
 apt-get -y install zfs-auto-snapshot
-ZSH_BUILD_HOME=/var/tmp/zfs-auto-snapshot
-mkdir -p ${ZSH_BUILD_HOME} && \
-	cd ${ZSH_BUILD_HOME} && \
-	git clone https://github.com/zfsonlinux/zfs-auto-snapshot.git && \
-	cd ${ZSH_BUILD_HOME}/zfs-auto-snapshot &&\
-	git merge origin/debian && \
-	dpkg-buildpackage -b -uc -us && \
-	dpkg -i ../zfs-auto-snapshot_*.deb
+#ZSH_BUILD_HOME=/var/tmp/zfs-auto-snapshot
+#mkdir -p ${ZSH_BUILD_HOME} && \
+#	cd ${ZSH_BUILD_HOME} && \
+#	git clone https://github.com/zfsonlinux/zfs-auto-snapshot.git && \
+#	cd ${ZSH_BUILD_HOME}/zfs-auto-snapshot &&\
+#	git merge origin/debian && \
+#	dpkg-buildpackage -b -uc -us && \
+#	dpkg -i ../zfs-auto-snapshot_*.deb
+
+# Without --fast the zfs list command regularly takes too long, 100% i/o.
+sed -i 's|-q|--quiet|g' /etc/cron.d/zfs-auto-snapshot
+sed -i 's|-g|--syslog|g' /etc/cron.d/zfs-auto-snapshot
+
+for i in $(find /etc/cron.*/zfs-auto-snapshot); do
+	sed -i 's|--quiet|--quiet --fast|g' "${i}"
+done
 
 ## 2. home directory set for zfssnap role (the user taking snapshots and 
 ## doing the sending):
