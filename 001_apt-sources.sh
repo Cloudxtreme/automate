@@ -1,31 +1,47 @@
 # avoid duplicates
+set -x
 rm /etc/apt/sources.list
 rm /etc/apt/sources.list.d/devuan
 
-ACTIVE=/etc/apt/sources.list.d/
-AVAILABLE=/etc/apt/sources.list-available/
+ACTIVE=/etc/apt/sources.list.d
+AVAILABLE=/etc/apt/sources.list-available
 mkdir -p "${AVAILABLE}"
 
-GROUPS=(main contrib non-free)
-ACTIVE_LIST=('devuan_ascii' 'devuan_ascii-security' 'devuan_ascii-updates' 'devuan_ascii-backports')
-INACTIVE_LIST=('devuan_jessie' 'devuan_jessie-security' 'devuan_jessie-updates' 'devuan_jessie-backports' 'devuan_beowulf' 'devuan_beowulf-security' 'devuan_beowulf-updates' 'devuan_beowulf-backports' 'devuan_ceres' 'devuan_experimental')
+SECTION=( 'main' 'contrib' 'non-free' )
+echo ${#SECTION[@]}
+echo ${SECTION[@]}
+echo ${SECTION[1]}
+echo ${SECTION[2]}
+echo ${SECTION[3]}
+ACTIVE_LIST=( 'ascii' 'ascii-security' 'ascii-updates' 'ascii-backports' )
+INACTIVE_LIST=( 'jessie' 'jessie-security' 'jessie-updates' 'jessie-backports' 'beowulf' 'beowulf-security' 'beowulf-updates' 'beowulf-backports' 'ceres' )
+OTHER_LIST=( 'experimental' )
 
 echo ${#ACTIVE_LIST[@]}
 for RELEASE in "${ACTIVE_LIST[@]}"; do
 	echo "${RELEASE}"
-	bash -c "cat > ${AVAILABLE}/${RELEASE}.list" <<EOF
-deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
-deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
+	bash -c "cat > ${AVAILABLE}/devuan_${RELEASE}.list" <<EOF
+deb http://pkgmaster.devuan.org/merged/ ${RELEASE} ${SECTION[@]}
+deb-src http://pkgmaster.devuan.org/merged/ ${RELEASE} ${SECTION[@]}
 EOF
-ln -sf "${AVAILABLE}"/"${RELEASE}".list "${ACTIVE}"/"${RELEASE}".list
+ln -sf "${AVAILABLE}"/devuan_"${RELEASE}".list "${ACTIVE}"/devuan_"${RELEASE}".list
 done
 
 echo ${#INACTIVE_LIST[@]}
 for RELEASE in "${INACTIVE_LIST[@]}"; do
 	echo "${RELEASE}"
-	bash -c "cat > ${AVAILABLE}/${RELEASE}.list" <<EOF
-deb http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
-deb-src http://pkgmaster.devuan.org/merged/ "${RELEASE}" "${GROUPS[@]}"
+	bash -c "cat > ${AVAILABLE}/devuan_${RELEASE}.list" <<EOF
+deb http://pkgmaster.devuan.org/merged/ ${RELEASE} ${SECTION[@]}
+deb-src http://pkgmaster.devuan.org/merged/ ${RELEASE} ${SECTION[@]}
+EOF
+done
+
+echo ${#OTHER_LIST[@]}
+for RELEASE in "${OTHER_LIST[@]}"; do
+	echo "${RELEASE}"
+	bash -c "cat > ${AVAILABLE}/devuan_${RELEASE}.list" <<EOF
+deb http://packages.devuan.org/devuan ${RELEASE} main
+deb-src http://packages.devuan.org/devuan ${RELEASE} main
 EOF
 done
 

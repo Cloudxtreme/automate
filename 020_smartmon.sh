@@ -30,7 +30,7 @@ EMAIL=root
 # You must initiate the first selective self test manually (-t select,0-${SIZE}) so smartd will know the slice size to test each day. 
 # To setup a full test of a 1TB disk within 20 days (one 50GB span each day), run this command once: 
 SIZE=99999999
-for i in $(smartctl --scan-open | awk {'print $2'}); 
+for i in $(smartctl --scan-open | awk {'print $1'}); 
 do 
 	echo ${i};
 	smartctl -t select,0-${SIZE} ${i}

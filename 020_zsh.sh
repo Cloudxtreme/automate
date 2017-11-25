@@ -1,5 +1,5 @@
 apt-get -y install zsh nodejs-legacy
-
+set -x
 # compaudit
 # There are insecure directories: /usr/local/share/zsh/site-functions
 # compaudit | xargs chmod g-w
