@@ -200,6 +200,13 @@ F=19
 D=0
 S=irc.deltaanime.net
 
+N=Dyne
+E=UTF-8 (Unicode)
+F=19
+D=0
+S=irc.dyne.org/6667
+J=#dowse
+
 N=EFnet
 E=UTF-8 (Unicode)
 F=19

@@ -1,21 +1,17 @@
 # avoid duplicates
 set -x
 rm /etc/apt/sources.list
-rm /etc/apt/sources.list.d/devuan
+rm /etc/apt/sources.list.d/devuan.list
 
 ACTIVE=/etc/apt/sources.list.d
 AVAILABLE=/etc/apt/sources.list-available
 mkdir -p "${AVAILABLE}"
 
-SECTION=( 'main' 'contrib' 'non-free' )
-echo ${#SECTION[@]}
-echo ${SECTION[@]}
-echo ${SECTION[1]}
-echo ${SECTION[2]}
-echo ${SECTION[3]}
-ACTIVE_LIST=( 'ascii' 'ascii-security' 'ascii-updates' 'ascii-backports' )
-INACTIVE_LIST=( 'jessie' 'jessie-security' 'jessie-updates' 'jessie-backports' 'beowulf' 'beowulf-security' 'beowulf-updates' 'beowulf-backports' 'ceres' )
-OTHER_LIST=( 'experimental' )
+SECTION=(main contrib non-free)
+ACTIVE_LIST=('ascii' 'ascii-security' 'ascii-updates' 'ascii-backports')
+INACTIVE_LIST=('jessie' 'jessie-security' 'jessie-updates' 'jessie-backports' 'beowulf' 'beowulf-security' 'beowulf-updates' 'beowulf-backports' 'ceres')
+
+OTHER_LIST=('experimental')
 
 echo ${#ACTIVE_LIST[@]}
 for RELEASE in "${ACTIVE_LIST[@]}"; do
@@ -61,7 +57,8 @@ bash -c cat > "${AVAILABLE}"/docker.list <<EOF
 deb http://apt.dockerproject.org/repo debian-stretch main
 EOF
 ln -sf "${AVAILABLE}"/docker.list "${ACTIVE}"/docker.list
-bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"
+bash -c "apt-key adv --keyserver hkp://p80.pool.sks-keyserv:w
+ers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"
 
 apt-get update && apt-get install -y --force-yes devuan-keyring
 

@@ -10,7 +10,7 @@
 #    You should set the RESUME variable in
 INITRAMFS_HOME=/etc/initramfs-tools/conf.d/
 
-DEVICE=${1:/dev/sda7}
+DEVICE=${1:-/dev/sda7}
 RESUME="RESUME=${DEVICE}"
 #UUID=f4d19cc8-2c3e-4061-a618-7974cb88bfec
 #RESUME="RESUME=none"

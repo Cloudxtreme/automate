@@ -24,4 +24,4 @@ sed -i 's,^\(CODESET=\).*,\1'\"guess\"',' /etc/default/console-setup
 sed -i 's,^\(FONTFACE=\).*,\1'\"Terminess\ Powerline\"',' /etc/default/console-setup
 sed -i 's,^\(FONTSIZE=\).*,\1'\"8x16\"',' /etc/default/console-setup
 sed -i 's,^\(VIDEOMODE=\).*,\1'\"\"',' /etc/default/console-setup
-echo "FONT=/usr/share/fonts/PSF/ter-powerline-v16b.psf" >> /etc/default/console-setup
+echo "FONT=/usr/share/fonts/PSF/ter-powerline-v16b.psf.gz" >> /etc/default/console-setup
