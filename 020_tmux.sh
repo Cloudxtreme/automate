@@ -169,7 +169,7 @@ set -g pane-active-border-fg colour069 # 24 blue
 # set -g pane-active-border-bg black
 EOF
 
-mkdir -p ~/.zshrc.d/``
+mkdir -p ~/.zshrc.d/
 echo "source /usr/share/zsh/vendor_completions/_tmuxinator" > ~/.zshrc.d/006_tmuxinator.zsh
 
 

@@ -1,4 +1,5 @@
 # avoid duplicates
+set -x
 rm /etc/apt/sources.list
 rm /etc/apt/sources.list.d/devuan.list
 
