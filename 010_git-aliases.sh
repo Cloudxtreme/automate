@@ -6,3 +6,8 @@ git config --global alias.lg "log --oneline --abbrev-commit --all --graph --deco
 
 # see the problems with git pull: https://stackoverflow.com/questions/15316601/in-what-cases-could-git-pull-be-harmful/15316602#15316602
 git config --global alias.up '!git remote update -p; git merge --ff-only @{u}'
+
+# set vimdiff as the merge tool.
+git config --global merge.tool vimdiff
+git config --global merge.conflictstyle diff3
+git config --global mergetool.prompt false
