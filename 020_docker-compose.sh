@@ -67,3 +67,5 @@ curl -s -o /usr/local/bin/docker-compose -L ${LATEST_URL} && chmod +x /usr/local
 EOF
 
 bash ./checkinstall_it.sh
+
+docker-compose --version
