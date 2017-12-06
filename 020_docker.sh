@@ -15,7 +15,7 @@ apt-get -y install --force-yes docker-engine jq
 
 bash -c 'perl -p -i -e "s/#DOCKER_OPTS=\"\"/DOCKER_OPTS=\"--restart=true\"/g"  /etc/default/docker'
 bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --storage-driver=zfs\"|" /etc/default/docker'
-bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --dns 8.8.8.8 --dns 8.8.4.4\"|" /etc/default/docker'
+bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 --dns 52.174.55.168 --dns 188.165.200.156\"|" /etc/default/docker'
 bash -c 'sed -i "s|DOCKER_OPTS=\"\(.*\)\"|DOCKER_OPTS=\"\1 zfs.fsname=rpool/docker\"|" /etc/default/docker'
 
 # i2p container requires ipv6 
@@ -34,7 +34,7 @@ else
 	echo "/etc/docker/daemon.json exits."
 fi
 
-DOCKER_OPT[0]='.["dns"] = ["8.8.8.8","8.8.4.4"]'
+DOCKER_OPT[0]='.["dns"] = ["52.174.55.168","188.165.200.156"]'
 DOCKER_OPT[1]='.["storage-driver"] = "zfs"'
 #DOCKER_OPT[2]='.["storage-opts"] = ["zfs.fsname=rpool/docker","size=256"]'
 DOCKER_OPT[2]='.["storage-opts"] = ["zfs.fsname=rpool/docker"]'

@@ -91,6 +91,7 @@ sleep 20
 sed -i 's,^\(automatic = \).*,\1'1',' /etc/wicd/wireless-settings.conf
 sed -i 's,^\(essid = \).*,\1'PlusnetWireless793757',' /etc/wicd/wireless-settings.conf
 sed -i 's,^\(key = \).*,\1'794900B697',' /etc/wicd/wireless-settings.conf
-sed -i 's,^\(dns1 = \).*,\1'8.8.8.8',' /etc/wicd/wireless-settings.conf
+sed -i 's,^\(dns1 = \).*,\1'52.174.55.168',' /etc/wicd/wireless-settings.conf
+sed -i 's,^\(dns2 = \).*,\1'188.165.200.156',' /etc/wicd/wireless-settings.conf
 
 
