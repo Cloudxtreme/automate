@@ -7,7 +7,6 @@ apt-get -y install gitk
 apt-get -y install zsync
 apt-get -y install jq
 apt-get -y install pv
-apt-get -y install mpv
 apt-get -y install rar
 apt-get -y install kpartx
 apt-get -y install inxi
