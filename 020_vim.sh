@@ -20,6 +20,17 @@ syntax enable
 
 set encoding=utf-8
 
+" Show file options above the command line
+set wildmenu
+
+" Don't offer to open certain files/directories
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
+set wildignore+=*.pdf,*.psd
+set wildignore+=node_modules/*,bower_components/*
+
+" `gf` opens file under cursor in a new vertical split
+nnoremap gf :vertical wincmd f<CR>"
+
 " Display tabs at the beginning of a line in Python mode as bad.
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 
@@ -270,9 +281,15 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Nertree customizations
+" Nerdtree customizations
 " hide .pyc files
 let NERDTreeIgnore=['\.pyc$', '\~$']
+
+" Nerdtree toggle keymap
+nmap \ :NERDTreeToggle<CR> 
+
+" Nerdtree find keymap
+nnoremap <C-\> :NERDTreeFind<CR>:vertical<CR>
 
 " YouCompleteMe customizations
 " close autocomplete window
@@ -285,6 +302,9 @@ let g:SimplyFold_docstring_preview=1
 
 " Flag unnecessary whitespace
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/lib
+
+" toggle between all lines folded and no lines folded.
+:nnoremap <expr> <f2> &foldlevel ? 'zM' :'zR'
 
 
 EOF
