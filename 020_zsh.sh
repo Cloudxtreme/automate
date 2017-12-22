@@ -263,3 +263,5 @@ alias ipython="_py_version"
 alias jupyter="_py_version"
 EOF
 
+chown -R root.root /usr/local/share/zsh/site-functions
+chmod -R 755 /usr/local/share/zsh/site-functions
