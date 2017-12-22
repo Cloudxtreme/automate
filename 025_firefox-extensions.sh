@@ -22,6 +22,9 @@ apt-get -y install xul-ext-firexpath
 #user_pref("browser.reader.detectedFirstArticle", true);//Disable obnoxious Reader View nag popup
 
 
+#// Disable Shield Recipe Client
+#user_pref("app.shield.optoutstudies.enabled", false);
+#user_pref("extensions.shield-recipe-client.enabled", false);
 
 # firefox get menu back: used to use RDF before and the people involved still can't keep it flat. 
 # I can't see a simple way to use jq to change a value in-place so resort to here-file.
