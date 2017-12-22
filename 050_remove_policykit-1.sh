@@ -10,3 +10,9 @@ apt-get -y remove --purge policykit-1
 # packagekit
 # packagekit-tools
 # printer-driver-postscript-hp
+
+cat > /et /apt/preferences.d/avoid-policykit.pref <<EOF
+Package: policykit-1
+Pin: origin ""
+Pin-Priority: -10
+EOF
